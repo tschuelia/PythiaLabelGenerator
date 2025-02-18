@@ -1,4 +1,5 @@
 *.raxml.*
+!tests/**/*.raxml.*
 
 **/*.reduced.*
 **/*.log

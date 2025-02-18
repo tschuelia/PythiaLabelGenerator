@@ -1,27 +1,34 @@
+import math
 import pathlib
 from typing import Optional
 
 from pypythia.raxmlng import RAxMLNG, get_raxmlng_rfdist_results, run_raxmlng_command
 
 
-def _raxmlng_ml_inference_done(prefix: pathlib.Path, n_trees: int) -> bool:
+def _check_existing_inference_results(prefix: pathlib.Path, n_trees: int) -> bool:
     ml_trees = pathlib.Path(f"{prefix}.raxml.mlTrees")
     best_tree = pathlib.Path(f"{prefix}.raxml.bestTree")
+
+    if n_trees == 1:
+        ml_trees = best_tree
+
     logfile = pathlib.Path(f"{prefix}.raxml.log")
 
-    # 1. Check if all RAxML-NG files already exist
     files_exist = ml_trees.exists() and best_tree.exists() and logfile.exists()
     if not files_exist:
+        # Files don't exist yet, nothing to check.
         return False
 
-    # 2. Number of ML trees is correct
+    # Check if the number of ML trees is correct, if there is a mismatch, raise an error
     n_trees_in_file = sum(1 for _ in ml_trees.open())
-    n_trees_correct = n_trees_in_file == n_trees
+    if n_trees_in_file != n_trees:
+        raise ValueError(
+            f"Number of trees in {ml_trees} ({n_trees_in_file}) does not match the expected number of trees ({n_trees})."
+            f"Please set the `redo` flag to recompute the trees."
+        )
 
-    # 3. Run is complete
-    run_complete = "Elapsed time:" in logfile.read_text()
-
-    return files_exist and n_trees_correct and run_complete
+    # Finally, check if the previous RAxML-NG run completed successfully
+    return "Elapsed time:" in logfile.read_text()
 
 
 def infer_ml_trees(
@@ -34,11 +41,42 @@ def infer_ml_trees(
     threads: Optional[int] = None,
     redo: bool = False,
 ) -> None:
-    if _raxmlng_ml_inference_done(prefix, n_trees) and not redo:
+    """
+    Infers ML trees using RAxML-NG.
+
+    If the results for the given prefix and number of trees already exist, the function will return without doing anything.
+    If the number of trees in the existing file does not match the expected number of trees, a ValueError is raised.
+    If you want to redo the computation, set redo=True.
+
+    Args:
+        msa (pathlib.Path): Path to the MSA file.
+        raxmlng (pathlib.Path): Path to the RAxML-NG executable.
+        model (str): Model to use for the RAxML-NG tree inference.
+        prefix (pathlib.Path): Prefix to use for the RAxML-NG output files.
+        n_trees (int): Number of ML trees to infer.
+        seed (int): Seed to use for the RAxML-NG inference.
+        threads (Optional[int]): Number of threads to use for the RAxML-NG inference.
+            Per default, uses the automatic setting of RAxML-NG which is likely to use all cores of your machine.
+        redo (bool): Flag to redo the computation even if the results already exist.
+
+    Returns:
+        None
+
+    Raises:
+        ValueError:
+        - If the number of trees is less than 1.
+        - If the number of trees in a previously computed file does not match the expected number of trees.
+
+    """
+    if n_trees < 1:
+        raise ValueError("Number of trees needs to be at least 1.")
+
+    if _check_existing_inference_results(prefix, n_trees) and not redo:
         return
 
-    n_pars_trees = n_trees // 2
+    n_pars_trees = math.ceil(n_trees / 2)
     n_rand_trees = n_trees - n_pars_trees
+    rand_string = f",rand{{{n_rand_trees}}}" if n_rand_trees > 0 else ""
 
     cmd = [
         raxmlng,
@@ -51,7 +89,7 @@ def infer_ml_trees(
         "--prefix",
         prefix,
         "--tree",
-        f"pars{{{n_pars_trees}}},rand{{{n_rand_trees}}}",
+        f"pars{{{n_pars_trees}}}{rand_string}",
     ]
 
     if threads is not None:
@@ -63,9 +101,10 @@ def infer_ml_trees(
     run_raxmlng_command(list(map(str, cmd)))
 
 
+
 def _raxmlng_rfdist_done(prefix: pathlib.Path) -> bool:
-    rfdist = pathlib.Path(f"{prefix}.rfdist")
-    logfile = pathlib.Path(f"{prefix}.rfdist.raxml.log")
+    rfdist = pathlib.Path(f"{prefix}.raxml.rfdist")
+    logfile = pathlib.Path(f"{prefix}.raxml.log")
 
     # 1. Check if all RAxML-NG files already exist
     files_exist = rfdist.exists() and logfile.exists()
@@ -79,10 +118,22 @@ def _raxmlng_rfdist_done(prefix: pathlib.Path) -> bool:
 
 
 def rf_distance(
-    prefix: pathlib.Path, raxmlng: pathlib.Path, redo: bool = False
+    ml_trees: pathlib.Path, prefix: pathlib.Path, raxmlng: pathlib.Path, redo: bool = False
 ) -> tuple[float, float]:
-    ml_trees = pathlib.Path(f"{prefix}.raxml.mlTrees")
+    """
+    Compute the relative RF distance for a set of ML trees.
+    If the results already exist, the function will return the results without recomputing them.
 
+    Args:
+        ml_trees (pathlib.Path): Path to the file containing the ML trees.
+        prefix (pathlib.Path): Prefix to use for the RAxML-NG output files.
+        raxmlng (pathlib.Path): Path to the RAxML-NG executable.
+        redo (bool): Flag to redo the computation if the results already exist.
+
+    Returns:
+        tuple[float, float]: The proportion of unique topologies and the average relative RF distance.
+
+    """
     if _raxmlng_rfdist_done(prefix) and not redo:
         num_topos, rel_rfdist, _ = get_raxmlng_rfdist_results(
             pathlib.Path(f"{prefix}.rfdist.raxml.log")
