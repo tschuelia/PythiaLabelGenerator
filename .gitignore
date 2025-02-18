@@ -1,3 +1,5 @@
+*.raxml.*
+
 **/*.reduced.*
 **/*.log
 **/*.csv
