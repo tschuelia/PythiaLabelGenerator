@@ -4,10 +4,13 @@ import shutil
 import sys
 import time
 
-from labelgenerator.logger import get_header, logger, log_runtime_information
-from labelgenerator.raxmlng import infer_ml_trees, rf_distance
-from pypythia.msa import parse
-
+from labelgenerator.label import compute_label
+from labelgenerator.logger import (
+    SCRIPT_START,
+    get_header,
+    log_runtime_information,
+    logger,
+)
 
 DEFAULT_RAXMLNG_EXE = (
     pathlib.Path(shutil.which("raxml-ng")) if shutil.which("raxml-ng") else None
@@ -19,14 +22,16 @@ DEFAULT_IQTREE_EXE = (
 
 
 def _parse_cli():
-    parser = argparse.ArgumentParser(description="Generate the ground truth difficulty for the given MSA.")
+    parser = argparse.ArgumentParser(
+        description="Generate the ground truth difficulty for the given MSA."
+    )
     parser.add_argument(
         "-m",
         "--msa",
         type=str,
         required=True,
         help="Multiple Sequence Alignment to compute the ground truth difficulty for. "
-             "Must be in either phylip or fasta format.",
+        "Must be in either phylip or fasta format.",
     )
 
     parser.add_argument(
@@ -36,7 +41,7 @@ def _parse_cli():
         default=DEFAULT_RAXMLNG_EXE,
         required=DEFAULT_RAXMLNG_EXE is None,
         help="Path to the binary of RAxML-NG. For install instructions see https://github.com/amkozlov/raxml-ng."
-             "(default: 'raxml-ng' if in $PATH, otherwise this option is mandatory).",
+        "(default: 'raxml-ng' if in $PATH, otherwise this option is mandatory).",
     )
 
     parser.add_argument(
@@ -46,7 +51,7 @@ def _parse_cli():
         default=DEFAULT_IQTREE_EXE,
         required=DEFAULT_IQTREE_EXE is None,
         help="Path to the binary of IQ-TREE2. For install instructions see http://www.iqtree.org."
-             "(default: 'iqtree2' if in $PATH, otherwise this option is mandatory).",
+        "(default: 'iqtree2' if in $PATH, otherwise this option is mandatory).",
     )
 
     parser.add_argument(
@@ -79,7 +84,7 @@ def _parse_cli():
         type=str,
         required=False,
         help="Model to use for the RAxML-NG tree inference (default: 'GTR+G' for DNA, 'LG+G' for AA, "
-             "and 'MULTIx_GTR' for morphological data).",
+        "and 'MULTIx_GTR' for morphological data).",
     )
 
     parser.add_argument(
@@ -96,7 +101,6 @@ def _parse_cli():
         help="Redo all computations, even if the results already exist.",
     )
 
-
     return parser.parse_args()
 
 
@@ -105,7 +109,6 @@ def main():
     args = _parse_cli()
 
     msa_file = pathlib.Path(args.msa)
-
     prefix = pathlib.Path(args.prefix) if args.prefix else msa_file
 
     log_file = pathlib.Path(f"{prefix}.labelGen.log")
@@ -118,20 +121,47 @@ def main():
     logger.info(" ".join(sys.argv))
     logger.info("")
 
-    msa_file = pathlib.Path(args.msa)
-    msa_obj = parse(msa_file)
-
-    if (model := args.model) is None:
-        model = msa_obj.get_raxmlng_model()
-
-    raxmlng = pathlib.Path(args.raxmlng)
-
     log_runtime_information("Starting label computation.")
 
-    # 1. Infer 100 ML trees for the given MSA using RAxML-NG
-    log_runtime_information(f"Inferring {args.ntrees} ML trees using RAxML-NG.")
-    infer_ml_trees(msa_file, raxmlng, model, prefix, args.ntrees, args.seed, args.threads)
+    difficulty = compute_label(
+        msa_file=msa_file,
+        raxmlng=pathlib.Path(args.raxmlng),
+        iqtree=pathlib.Path(args.iqtree),
+        prefix=prefix,
+        model=args.model,
+        n_trees=args.ntrees,
+        seed=args.seed,
+        threads=args.threads,
+        redo=args.redo,
+        log_info=True,
+    )
 
-    # 2. RF-Distance
-    log_runtime_information("Computing RF-Distance between ML trees.")
-    prop_unique_topos, rel_rfdist = rf_distance(prefix, raxmlng)
+    script_end = time.perf_counter()
+
+    logger.info("")
+    logger.info(f"Ground Truth Difficulty for {msa_file}: {difficulty:.3f}")
+
+    if args.ntrees < 100:
+        logger.info(
+            "WARNING: The number of inferred ML trees is less than 100. The computed label may be less reliable."
+        )
+
+    logger.info("")
+    total_runtime = script_end - SCRIPT_START
+    hours, remainder = divmod(total_runtime, 3600)
+    minutes, seconds = divmod(remainder, 60)
+
+    if hours > 0:
+        logger.info(
+            f"Total runtime: {int(hours):02d}:{int(minutes):02d}:{seconds:02d} hours ({round(total_runtime)} seconds)."
+        )
+    elif minutes > 0:
+        logger.info(
+            f"Total runtime: {int(minutes):02d}:{int(seconds):02d} minutes ({round(total_runtime)} seconds)."
+        )
+    else:
+        logger.info(f"Total runtime: {seconds:.2f} seconds.")
+
+
+if __name__ == "__main__":
+    main()

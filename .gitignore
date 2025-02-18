@@ -1,6 +1,9 @@
 *.raxml.*
 !tests/**/*.raxml.*
 
+*.iqtree.*
+!tests/**/*.iqtree.*
+
 **/*.reduced.*
 **/*.log
 **/*.csv

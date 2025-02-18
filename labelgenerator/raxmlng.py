@@ -14,8 +14,7 @@ def _check_existing_inference_results(prefix: pathlib.Path, n_trees: int) -> boo
 
     logfile = pathlib.Path(f"{prefix}.raxml.log")
 
-    files_exist = ml_trees.exists() and best_tree.exists() and logfile.exists()
-    if not files_exist:
+    if not ml_trees.exists() and best_tree.exists() and logfile.exists():
         # Files don't exist yet, nothing to check.
         return False
 
@@ -71,7 +70,7 @@ def infer_ml_trees(
     if n_trees < 1:
         raise ValueError("Number of trees needs to be at least 1.")
 
-    if _check_existing_inference_results(prefix, n_trees) and not redo:
+    if not redo and _check_existing_inference_results(prefix, n_trees):
         return
 
     n_pars_trees = math.ceil(n_trees / 2)
@@ -101,9 +100,8 @@ def infer_ml_trees(
     run_raxmlng_command(list(map(str, cmd)))
 
 
-
 def _raxmlng_rfdist_done(prefix: pathlib.Path) -> bool:
-    rfdist = pathlib.Path(f"{prefix}.raxml.rfdist")
+    rfdist = pathlib.Path(f"{prefix}.raxml.rfDistances")
     logfile = pathlib.Path(f"{prefix}.raxml.log")
 
     # 1. Check if all RAxML-NG files already exist
@@ -118,10 +116,13 @@ def _raxmlng_rfdist_done(prefix: pathlib.Path) -> bool:
 
 
 def rf_distance(
-    ml_trees: pathlib.Path, prefix: pathlib.Path, raxmlng: pathlib.Path, redo: bool = False
-) -> tuple[float, float]:
+    ml_trees: pathlib.Path,
+    prefix: pathlib.Path,
+    raxmlng: pathlib.Path,
+    redo: bool = False,
+) -> tuple[int, float]:
     """
-    Compute the relative RF distance for a set of ML trees.
+    Compute the number of unique topologies and the average relative RF distance for a set of ML trees.
     If the results already exist, the function will return the results without recomputing them.
 
     Args:
@@ -131,18 +132,17 @@ def rf_distance(
         redo (bool): Flag to redo the computation if the results already exist.
 
     Returns:
-        tuple[float, float]: The proportion of unique topologies and the average relative RF distance.
+        tuple[int, float]: The number of unique topologies and the average relative RF distance.
 
     """
-    if _raxmlng_rfdist_done(prefix) and not redo:
+    if not redo and _raxmlng_rfdist_done(prefix):
         num_topos, rel_rfdist, _ = get_raxmlng_rfdist_results(
-            pathlib.Path(f"{prefix}.rfdist.raxml.log")
+            pathlib.Path(f"{prefix}.raxml.log")
         )
     else:
         raxmlng = RAxMLNG(raxmlng)
         num_topos, rel_rfdist, _ = raxmlng.get_rfdistance_results(
-            ml_trees, pathlib.Path(f"{prefix}.rfdist"), **{redo: None} if redo else {}
+            ml_trees, prefix, **{"redo": None} if redo else {}
         )
 
-    n_trees = sum(1 for _ in ml_trees.open())
-    return num_topos / n_trees, rel_rfdist
+    return num_topos, rel_rfdist

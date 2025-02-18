@@ -1,5 +1,6 @@
-import pytest
 import pathlib
+
+import pytest
 
 from .test_config import RAXMLNG_COMMAND
 
