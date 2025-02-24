@@ -26,6 +26,11 @@ def ml_tree_dir(data_dir):
 
 
 @pytest.fixture
+def log_dir(data_dir):
+    return data_dir / "logs"
+
+
+@pytest.fixture
 def dna_msa(data_dir):
     return data_dir / "DNA.phy"
 
@@ -41,10 +46,10 @@ def morph_msa(data_dir):
 
 
 @pytest.fixture
-def done_raxml_inference_prefix(data_dir):
-    return data_dir / "logs" / "test"
+def done_raxml_inference_prefix(log_dir):
+    return log_dir / "test"
 
 
 @pytest.fixture
-def done_raxml_rfdist_prefix(data_dir):
-    return data_dir / "logs" / "test.rfdist"
+def done_raxml_rfdist_prefix(log_dir):
+    return log_dir / "test.rfdist"

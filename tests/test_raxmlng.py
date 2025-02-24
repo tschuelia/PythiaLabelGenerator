@@ -124,3 +124,21 @@ def test_rf_distance(raxmlng_command, done_raxml_inference_prefix):
         )
         assert num_topos == 2
         assert 0.15 == pytest.approx(rfdist, 0.0)
+
+
+def test_rf_distance_existing_results(
+    raxmlng_command, done_raxml_inference_prefix, done_raxml_rfdist_prefix
+):
+    ml_trees = pathlib.Path(f"{done_raxml_inference_prefix}.raxml.mlTrees")
+
+    # make sure the files actually exist
+    assert _rfdist_results_exists_and_correct(done_raxml_rfdist_prefix, 6)
+
+    with tempfile.TemporaryDirectory() as tmpdir:
+        tmpdir = pathlib.Path(tmpdir)
+        prefix = tmpdir / "test"
+        num_topos, rfdist = rf_distance(
+            ml_trees, done_raxml_rfdist_prefix, raxmlng_command, n_trees=6, redo=False
+        )
+        assert num_topos == 2
+        assert 0.15 == pytest.approx(rfdist, 0.0)

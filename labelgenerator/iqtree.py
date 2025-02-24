@@ -77,6 +77,8 @@ def run_statstests(
 
     try:
         subprocess.check_output(list(map(str, cmd)), encoding="utf-8")
+    except subprocess.CalledProcessError as e:
+        raise RuntimeError(f"Running IQ-TREE command failed: {e.stdout}")
     except Exception as e:
         raise RuntimeError("Running IQ-TREE command failed.") from e
 
