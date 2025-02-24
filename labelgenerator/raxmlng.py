@@ -5,7 +5,7 @@ from typing import Optional
 from pypythia.raxmlng import RAxMLNG, get_raxmlng_rfdist_results, run_raxmlng_command
 
 
-def _check_existing_inference_results(prefix: pathlib.Path, n_trees: int) -> bool:
+def _inference_results_exist_and_correct(prefix: pathlib.Path, n_trees: int) -> bool:
     ml_trees = pathlib.Path(f"{prefix}.raxml.mlTrees")
     best_tree = pathlib.Path(f"{prefix}.raxml.bestTree")
 
@@ -14,7 +14,8 @@ def _check_existing_inference_results(prefix: pathlib.Path, n_trees: int) -> boo
 
     logfile = pathlib.Path(f"{prefix}.raxml.log")
 
-    if not ml_trees.exists() and best_tree.exists() and logfile.exists():
+    files_exist = ml_trees.exists() and best_tree.exists() and logfile.exists()
+    if not files_exist:
         # Files don't exist yet, nothing to check.
         return False
 
@@ -70,7 +71,7 @@ def infer_ml_trees(
     if n_trees < 1:
         raise ValueError("Number of trees needs to be at least 1.")
 
-    if not redo and _check_existing_inference_results(prefix, n_trees):
+    if not redo and _inference_results_exist_and_correct(prefix, n_trees):
         return
 
     n_pars_trees = math.ceil(n_trees / 2)
@@ -100,7 +101,7 @@ def infer_ml_trees(
     run_raxmlng_command(list(map(str, cmd)))
 
 
-def _raxmlng_rfdist_done(prefix: pathlib.Path) -> bool:
+def _rfdist_results_exists_and_correct(prefix: pathlib.Path, n_trees: int) -> bool:
     rfdist = pathlib.Path(f"{prefix}.raxml.rfDistances")
     logfile = pathlib.Path(f"{prefix}.raxml.log")
 
@@ -112,6 +113,16 @@ def _raxmlng_rfdist_done(prefix: pathlib.Path) -> bool:
     # 2. Run is complete
     run_complete = "Elapsed time:" in logfile.read_text()
 
+    # 3. Check if the number of pairwise RF-Distance results is correct
+    expected_number_of_pairs = n_trees * (n_trees - 1) // 2
+    n_pairs_in_file = sum(1 for _ in rfdist.open())
+    if n_pairs_in_file != expected_number_of_pairs:
+        raise ValueError(
+            f"Number of pairwise RF-Distances in {rfdist} ({n_pairs_in_file}) does not match "
+            f"the expected number of pairs ({expected_number_of_pairs})."
+            f"Please set the `redo` flag to recompute the distances."
+        )
+
     return files_exist and run_complete
 
 
@@ -119,6 +130,7 @@ def rf_distance(
     ml_trees: pathlib.Path,
     prefix: pathlib.Path,
     raxmlng: pathlib.Path,
+    n_trees: Optional[int] = None,
     redo: bool = False,
 ) -> tuple[int, float]:
     """
@@ -129,13 +141,20 @@ def rf_distance(
         ml_trees (pathlib.Path): Path to the file containing the ML trees.
         prefix (pathlib.Path): Prefix to use for the RAxML-NG output files.
         raxmlng (pathlib.Path): Path to the RAxML-NG executable.
+        n_trees (Optional[int]): Number of trees that were inferred.
+            If not provided, the number of trees will be inferred from the file.
+            Explicitly provide the number of trees if you want to check if existing results for the given
+            prefix contain the results for the correct number of trees.
         redo (bool): Flag to redo the computation if the results already exist.
 
     Returns:
         tuple[int, float]: The number of unique topologies and the average relative RF distance.
 
     """
-    if not redo and _raxmlng_rfdist_done(prefix):
+    if not n_trees:
+        n_trees = sum(1 for _ in ml_trees.open())
+
+    if not redo and _rfdist_results_exists_and_correct(prefix, n_trees):
         num_topos, rel_rfdist, _ = get_raxmlng_rfdist_results(
             pathlib.Path(f"{prefix}.raxml.log")
         )
