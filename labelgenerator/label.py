@@ -3,7 +3,11 @@ from typing import Optional
 
 from pypythia.msa import parse
 
-from labelgenerator.iqtree import filter_plausible_trees, run_statstests
+from labelgenerator.iqtree import (
+    filter_plausible_trees,
+    get_iqtree_model,
+    run_statstests,
+)
 from labelgenerator.logger import log_runtime_information
 from labelgenerator.raxmlng import infer_ml_trees, rf_distance
 
@@ -103,7 +107,7 @@ def compute_label(
         ml_trees=ml_trees,
         best_tree=best_tree,
         iqtree=iqtree,
-        model=model,
+        model=get_iqtree_model(msa_obj.data_type),
         prefix=iqtree_prefix,
         seed=seed,
         threads=threads,

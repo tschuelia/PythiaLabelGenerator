@@ -2,7 +2,7 @@ import pathlib
 
 import pytest
 
-from .test_config import RAXMLNG_COMMAND
+from .test_config import IQTREE_COMMAND, RAXMLNG_COMMAND
 
 
 @pytest.fixture
@@ -11,8 +11,8 @@ def raxmlng_command():
 
 
 @pytest.fixture
-def phylip_msa_file():
-    return pathlib.Path.cwd() / "tests" / "data" / "DNA" / "1.phy"
+def iqtree_command():
+    return pathlib.Path(IQTREE_COMMAND)
 
 
 @pytest.fixture

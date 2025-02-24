@@ -2,10 +2,12 @@ import pathlib
 import subprocess
 from typing import Optional
 
+from pypythia.custom_types import DataType
+
 from labelgenerator.iqtree_parser import get_iqtree_results
 
 
-def _check_existing_iqtree_results(prefix: pathlib.Path) -> bool:
+def _iqtree_results_exist_and_done(prefix: pathlib.Path) -> bool:
     iqtree_file = pathlib.Path(f"{prefix}.iqtree")
     logfile = pathlib.Path(f"{prefix}.log")
 
@@ -16,6 +18,14 @@ def _check_existing_iqtree_results(prefix: pathlib.Path) -> bool:
         "Total wall-clock time used" in iqtree_file.read_text()
         and "Date and Time:" in logfile.read_text()
     )
+
+
+def get_iqtree_model(data_type: DataType) -> str:
+    return {
+        DataType.DNA: "GTR+G4+FO",
+        DataType.AA: "LG+G4+FO",
+        DataType.MORPH: "MK",
+    }[data_type]
 
 
 def run_statstests(
@@ -30,7 +40,7 @@ def run_statstests(
     is_morph: bool = False,
     redo: bool = False,
 ) -> None:
-    if not redo and _check_existing_iqtree_results(prefix):
+    if not redo and _iqtree_results_exist_and_done(prefix):
         return
 
     cmd = [
