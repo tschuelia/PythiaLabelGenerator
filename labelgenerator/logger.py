@@ -3,7 +3,7 @@ import textwrap
 import time
 
 import loguru
-from pypythia import __version__
+from labelgenerator import __version__
 
 SCRIPT_START = time.perf_counter()
 
