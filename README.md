@@ -59,3 +59,8 @@ Only use this tool if you need the ground-truth difficulty for a specific MSA an
 predict the difficulty accurately.
 The only case where we observed Pythia to fail is for language MSAs, so if you are working with DNA, Protein, or
 biological morphological data, Pythia should work just fine 😉
+
+
+## Installation
+TODO
+- RAxML-NG < 2

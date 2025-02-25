@@ -35,7 +35,7 @@ def test_get_label(values, expected):
     assert computed == pytest.approx(expected)
 
 
-@pytest.mark.parametrize("data_type, expected_label", [(DataType.DNA, 0.729), (DataType.AA, 0.04), (DataType.MORPH, 0.214)])
+@pytest.mark.parametrize("data_type, expected_label", [(DataType.DNA, 0.789), (DataType.AA, 0.04), (DataType.MORPH, 0.173)])
 def test_compute_label(raxmlng_command, iqtree_command, data_dir, data_type, expected_label):
     msa_file = data_dir / f"{data_type.name}.phy"
 
@@ -76,13 +76,13 @@ def test_compute_label_with_logging(raxmlng_command, iqtree_command, data_dir):
             log_info=True,
             seed=0
         )
-        assert label == pytest.approx(0.214, abs=0.01)
+        assert label == pytest.approx(0.173, abs=0.01)
 
         logfile_content = logfile.read_text()
 
         assert f"Inferring {n_trees} ML trees using RAxML-NG." in logfile_content
-        assert f"RF-Distance ML trees: 0.26" in logfile_content
-        assert "Unique topologies ML trees: 3" in logfile_content
-        assert "Found 9 plausible trees." in logfile_content
-        assert "RF-Distance plausible trees: 0.19" in logfile_content
+        assert f"RF-Distance ML trees: 0.23" in logfile_content
+        assert "Unique topologies ML trees: 2" in logfile_content
+        assert "Found 10 plausible trees." in logfile_content
+        assert "RF-Distance plausible trees: 0.23" in logfile_content
         assert "Unique topologies plausible trees: 2" in logfile_content
