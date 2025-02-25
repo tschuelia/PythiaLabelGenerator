@@ -12,6 +12,8 @@ jobs:
         os: [ubuntu-latest, macos-latest]
         python-version: ["3.9", "3.12"]
     steps:
+      - name: Check out repository code
+        uses: actions/checkout@v3
       - name: Setup Conda
         uses: mamba-org/setup-micromamba@v2
         with:
@@ -21,8 +23,6 @@ jobs:
             python=${{ matrix.python-version }}
           generate-run-shell: false
           post-cleanup: none
-      - name: Check out repository code
-        uses: actions/checkout@v3
       - name: Setup RAxML-NG and RAxML-NG env variable
         uses: ./.github/actions/setup-raxmlng
       - name: Setup IQ-TREE and IQ-TREE env variable
