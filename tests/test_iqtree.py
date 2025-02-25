@@ -52,7 +52,6 @@ def test_run_statstests(iqtree_command, data_dir, ml_tree_dir, data_type):
             model=get_iqtree_model(data_type),
             prefix=prefix,
             seed=42,
-            threads=4,
             is_morph=data_type == DataType.MORPH,
             redo=True,
         )
@@ -77,7 +76,6 @@ def test_run_statstests_existing_files(
         model=get_iqtree_model(data_type),
         prefix=prefix,
         seed=42,
-        threads=4,
         is_morph=data_type == DataType.MORPH,
         redo=False,
     )
@@ -104,7 +102,6 @@ def test_run_statstests_fails():
                 model="GTR+G4+FO",
                 prefix=prefix,
                 seed=42,
-                threads=4,
                 redo=True,
             )
 
@@ -126,7 +123,6 @@ def test_run_statstests_fails_with_CalledProcessError(ml_tree_dir, iqtree_comman
                 model="GTR+G4+FO",
                 prefix=prefix,
                 seed=42,
-                threads=4,
                 redo=True,
             )
 

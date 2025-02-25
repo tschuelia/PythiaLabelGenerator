@@ -48,7 +48,6 @@ def test_compute_label(raxmlng_command, iqtree_command, data_dir, data_type, exp
             iqtree=iqtree_command,
             prefix=prefix,
             n_trees=10,
-            threads=4,
             log_info=False,
             seed=42
         )
@@ -73,7 +72,6 @@ def test_compute_label_with_logging(raxmlng_command, iqtree_command, data_dir):
             iqtree=iqtree_command,
             prefix=prefix,
             n_trees=n_trees,
-            threads=4,
             log_info=True,
             seed=42
         )
