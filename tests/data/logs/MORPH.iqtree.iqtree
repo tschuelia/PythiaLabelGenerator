@@ -1,9 +1,9 @@
 IQ-TREE 2.1.3 COVID-edition built Oct  4 2021
 
-Input file name: tests/data/MORPH.phy
-User tree file name: /tmp/MORPH.raxml.bestTree
+Input file name: LabelGenerator/tests/data/MORPH.phy
+User tree file name: LabelGenerator/tests/data/mltrees/MORPH.raxml.bestTree
 Type of analysis: tree reconstruction
-Random seed number: 0
+Random seed number: 42
 
 REFERENCES
 ----------
@@ -56,8 +56,8 @@ Akaike information criterion (AIC) score: 74.1480
 Corrected Akaike information criterion (AICc) score: 186.1480
 Bayesian information criterion (BIC) score: 74.7041
 
-Total tree length (sum of branch lengths): 75.2916
-Sum of internal branch lengths: 0.0718 (0.0954% of tree length)
+Total tree length (sum of branch lengths): 49.2978
+Sum of internal branch lengths: 0.0000 (0.0000% of tree length)
 
 WARNING: 1 near-zero internal branches (<0.1250) should be treated with caution
          Such branches are denoted by '**' in the figure below
@@ -67,9 +67,9 @@ NOTE: Tree is UNROOTED although outgroup taxon 'Amytornis' is drawn at root
 
 +-----------------------------------------------------------Amytornis
 |
-|           +**Stipiturus_malachurus
-|  +--------|
-|  |        +**Stipiturus_westernensis
+|                 +**Stipiturus_malachurus
+|  +--------------|
+|  |              +**Stipiturus_westernensis
 +**|
 |  +**Stipiturus_ruficeps
 |
@@ -77,7 +77,7 @@ NOTE: Tree is UNROOTED although outgroup taxon 'Amytornis' is drawn at root
 
 Tree in newick format:
 
-(Amytornis:65.1531410000,((Stipiturus_malachurus:0.0000010000,Stipiturus_westernensis:0.0000010000):9.9999984831,Stipiturus_ruficeps:0.0462993271):0.0718490000,Stipiturus_mallee:0.0202780000);
+(Amytornis:39.1593760000,((Stipiturus_malachurus:0.0000010000,Stipiturus_westernensis:0.0000010000):9.9999989587,Stipiturus_ruficeps:0.0472583234):0.0000010000,Stipiturus_mallee:0.0911670000);
 
 
 USER TREES
@@ -87,11 +87,26 @@ See /tmp/MORPH.iqtree.trees for trees with branch lengths.
 
 Tree      logL    deltaL  bp-RELL    p-KH     p-SH    p-WKH    p-WSH       c-ELW       p-AU
 -------------------------------------------------------------------------------------------
-  1 -30.07402093 3.0415e-07   0.507 +  0.262 +  0.262 +  0.262 +  0.262 +       0.5 +   0.0302 - 
-  2 -30.07402062       0   0.493 +  0.739 +      1 +  0.739 +  0.739 +       0.5 +     0.97 + 
-  3  = tree 2
-  4  = tree 2
-  5  = tree 2
+  1  -30.0740196       0   0.505 +  0.902 +      1 +  0.902 +  0.902 +       0.5 +     0.84 +
+  2  = tree 1
+  3  = tree 1
+  4 -30.07402062 1.0147e-06   0.495 + 0.0983 + 0.0983 + 0.0983 + 0.0983 +       0.5 +     0.16 +
+  5  = tree 4
+  6  = tree 4
+  7  = tree 1
+  8  = tree 1
+  9  = tree 4
+ 10  = tree 4
+ 11  = tree 4
+ 12  = tree 1
+ 13  = tree 1
+ 14  = tree 4
+ 15  = tree 4
+ 16  = tree 1
+ 17  = tree 4
+ 18  = tree 4
+ 19  = tree 4
+ 20  = tree 1
 
 deltaL  : logL difference from the maximal logl in the set.
 bp-RELL : bootstrap proportion using RELL method (Kishino et al. 1990).
@@ -109,7 +124,6 @@ All tests performed 10000 resamplings using the RELL method.
 TIME STAMP
 ----------
 
-Date and time: Mon Feb 24 15:10:37 2025
-Total CPU time used: 0.013 seconds (0h:0m:0s)
-Total wall-clock time used: 0.0512 seconds (0h:0m:0s)
-
+Date and time: Mon Feb 24 15:39:21 2025
+Total CPU time used: 0.0754 seconds (0h:0m:0s)
+Total wall-clock time used: 0.0421 seconds (0h:0m:0s)

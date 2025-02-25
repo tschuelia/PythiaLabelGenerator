@@ -92,6 +92,7 @@ def _get_default_entry() -> dict:
             "c-ELW": {"score": 1, "significant": True},
             "p-AU": {"score": 1, "significant": True},
         },
+        "duplicate_topology": False,
     }
 
 
@@ -148,6 +149,7 @@ def get_cleaned_table_entries(table_section: list[str]) -> list[dict]:
             entry = _regex_group_to_test_results(raw_results)
             entry["logL"] = float(llh)
             entry["deltaL"] = float(deltaL)
+            entry["duplicate_topology"] = False
             entries.append(entry)
         elif m_single_tree:
             # if a match for a truncated table entry was found: we only have a single plausible tree
@@ -165,7 +167,8 @@ def get_cleaned_table_entries(table_section: list[str]) -> list[dict]:
 
             # IQ-Tree reports the results 1-indexed
             # => to get the correct results we need to subtract one and access the entries
-            entry = entries[id_of_identical_tree - 1]
+            entry = entries[id_of_identical_tree - 1].copy()
+            entry["duplicate_topology"] = True
             entries.append(entry)
 
     if not entries:

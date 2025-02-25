@@ -96,7 +96,11 @@ def filter_plausible_trees(
             "Number of IQ-TREE results does not match the number of ML trees."
         )
 
-    plausible_indices = [i for i, x in enumerate(iqtree_results) if x["plausible"]]
+    plausible_indices = [
+        i
+        for i, x in enumerate(iqtree_results)
+        if x["plausible"] and not x["duplicate_topology"]
+    ]
     plausible_trees = [newick_trees[i] for i in plausible_indices]
 
     plausible_ml_trees.write_text("\n".join(plausible_trees))

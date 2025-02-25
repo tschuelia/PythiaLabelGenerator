@@ -1,9 +1,9 @@
 IQ-TREE 2.1.3 COVID-edition built Oct  4 2021
 
-Input file name: tests/data/DNA.phy
-User tree file name: /tmp/DNA.raxml.bestTree
+Input file name: /Users/julia/Desktop/Promotion/DifficultyPrediction/LabelGenerator/tests/data/DNA.phy
+User tree file name: /Users/julia/Desktop/Promotion/DifficultyPrediction/LabelGenerator/tests/data/mltrees/DNA.raxml.bestTree
 Type of analysis: tree reconstruction
-Random seed number: 0
+Random seed number: 42
 
 REFERENCES
 ----------
@@ -32,33 +32,33 @@ Model of substitution: GTR+FO+G4
 
 Rate parameter R:
 
-  A-C: 25.1032
-  A-G: 51.6052
-  A-T: 41.1934
-  C-G: 29.4954
-  C-T: 99.5054
+  A-C: 25.0722
+  A-G: 51.7452
+  A-T: 41.2872
+  C-G: 29.5353
+  C-T: 99.5993
   G-T: 1.0000
 
 State frequencies: (estimated with maximum likelihood)
 
-  pi(A) = 0.2198
+  pi(A) = 0.2199
   pi(C) = 0.2861
   pi(G) = 0.2553
-  pi(T) = 0.2388
+  pi(T) = 0.2387
 
 Rate matrix Q:
 
-  A   -0.9647    0.2294     0.421    0.3143
-  C    0.1763    -1.176    0.2406    0.7591
-  G    0.3625    0.2696   -0.6397  0.007629
-  T    0.2893    0.9094  0.008158    -1.207
+  A    -0.965    0.2289    0.4216    0.3145
+  C    0.1759    -1.175    0.2406    0.7587
+  G     0.363    0.2696   -0.6402  0.007618
+  T    0.2896    0.9092  0.008147    -1.207
 
 Model of rate heterogeneity: Gamma with 4 categories
 Gamma shape alpha: 0.6782
 
  Category  Relative_rate  Proportion
-  1         0.06955        0.25
-  2         0.3531         0.25
+  1         0.06953        0.25
+  2         0.353          0.25
   3         0.9165         0.25
   4         2.661          0.25
 Relative rates are computed as MEAN of the portion of the Gamma distribution falling in the category.
@@ -66,15 +66,15 @@ Relative rates are computed as MEAN of the portion of the Gamma distribution fal
 USER TREE
 ---------
 
-Log-likelihood of the tree: -1777.1577 (s.e. 47.5847)
+Log-likelihood of the tree: -1777.1539 (s.e. 47.5853)
 Unconstrained log-likelihood (without tree): -1989.5886
 Number of free parameters (#branches + #model parameters): 72
-Akaike information criterion (AIC) score: 3698.3153
-Corrected Akaike information criterion (AICc) score: 3722.8761
-Bayesian information criterion (BIC) score: 4001.9110
+Akaike information criterion (AIC) score: 3698.3079
+Corrected Akaike information criterion (AICc) score: 3722.8686
+Bayesian information criterion (BIC) score: 4001.9035
 
 Total tree length (sum of branch lengths): 10.1902
-Sum of internal branch lengths: 0.1602 (1.5718% of tree length)
+Sum of internal branch lengths: 0.1602 (1.5717% of tree length)
 
 WARNING: 15 near-zero internal branches (<0.0020) should be treated with caution
          Such branches are denoted by '**' in the figure below
@@ -84,87 +84,102 @@ NOTE: Tree is UNROOTED although outgroup taxon 'Colletotrichum_acutatum_67_JN121
 
 +**Colletotrichum_acutatum_67_JN121188
 |
-|                    +**Colletotrichum_acutatum_A1_CA546_AJ749674
+|                       +**Colletotrichum_acutatum_A1_CA546_AJ749674
+|                    +--|
+|                    |  +**Colletotrichum_acutatum_A1_IMI350308_AJ300561
 |                 +--|
-|                 |  +**Colletotrichum_acutatum_A1_IMI350308_AJ300561
+|                 |  |  +--Colletotrichum_acutatum_A8_TOM21_AF521196
+|                 |  +--|
+|                 |     +--Colletotrichum_acutatum_A8_TOM9_AF521205
 |              +--|
-|              |  |  +--Colletotrichum_acutatum_A8_TOM21_AF521196
-|              |  +--|
-|              |     +--Colletotrichum_acutatum_A8_TOM9_AF521205
+|              |  |  +**Colletotrichum_simmondsii_1036_JN121208
+|              |  +**|
+|              |     +**Colletotrichum_simmondsii_UWS68_JN121199
 |           +--|
-|           |  |  +**Colletotrichum_simmondsii_1036_JN121208
-|           |  +**|
-|           |     +**Colletotrichum_simmondsii_UWS68_JN121199
-|        +--|
-|        |  |     +**Colletotrichum_simmondsii_1567_JN121203
-|        |  |  +**|
-|        |  |  |  +**Colletotrichum_simmondsii_1568_JN121204
+|           |  |        +**Colletotrichum_simmondsii_1567_JN121203
+|           |  |     +**|
+|           |  |     |  |  +**Colletotrichum_simmondsii_BRIP28519_GU183331
+|           |  |     |  +**|
+|           |  |     |     +**Colletotrichum_simmondsii_UWS137_JN121200
+|           |  |  +**|
+|           |  |  |  +**Colletotrichum_simmondsii_1568_JN121204
+|           |  +--|
+|           |     +**Colletotrichum_simmondsii_PT135_AJ749683
+|        +**|
+|        |  |           +**Colletotrichum_acutatum_A6_PT250_AJ749700
+|        |  |        +--|
+|        |  |        |  +**Colletotrichum_acutatum_A6_S2_AF411719
+|        |  |     +--|
+|        |  |     |  |     +**Colletotrichum_clavatum_64_JN121168
+|        |  |     |  |  +**|
+|        |  |     |  |  |  |  +**Colletotrichum_clavatum_8689_JN121182
+|        |  |     |  |  |  +**|
+|        |  |     |  |  |     +--Colletotrichum_clavatum_JG05_AJ300557
+|        |  |     |  +--|
+|        |  |     |     |  +**Colletotrichum_clavatum_CBS19332_AJ749688
+|        |  |     |     +**|
+|        |  |     |        +**Colletotrichum_clavatum_PT169_AJ749685
+|        |  |  +--|
+|        |  |  |  |  +**Colletotrichum_acutatum_A7_BBA65797_AJ301925
+|        |  |  |  +**|
+|        |  |  |     +**Colletotrichum_acutatum_A7_IMI345581_AJ536212
 |        |  +--|
-|        |     |  +**Colletotrichum_simmondsii_BRIP28519_GU183331
-|        |     +**|
-|        |        |  +**Colletotrichum_simmondsii_PT135_AJ749683
+|        |     |  +**Colletotrichum_fioriniae_1409_JN121192
+|        |     +--|
+|        |        |  +**Colletotrichum_fioriniae_1491_JN121193
 |        |        +**|
-|        |           +**Colletotrichum_simmondsii_UWS137_JN121200
+|        |           +**Colletotrichum_fioriniae_ACUVA_JN121191
 |     +**|
-|     |  |           +**Colletotrichum_acutatum_A6_PT250_AJ749700
-|     |  |        +--|
-|     |  |        |  +**Colletotrichum_acutatum_A6_S2_AF411719
-|     |  |     +--|
-|     |  |     |  |     +**Colletotrichum_clavatum_64_JN121168
-|     |  |     |  |  +**|
-|     |  |     |  |  |  |     +**Colletotrichum_clavatum_8689_JN121182
-|     |  |     |  |  |  |  +**|
-|     |  |     |  |  |  |  |  +**Colletotrichum_clavatum_CBS19332_AJ749688
-|     |  |     |  |  |  +**|
-|     |  |     |  |  |     +**Colletotrichum_clavatum_PT169_AJ749685
-|     |  |     |  +--|
-|     |  |     |     +--Colletotrichum_clavatum_JG05_AJ300557
-|     |  |  +--|
-|     |  |  |  |  +**Colletotrichum_acutatum_A7_BBA65797_AJ301925
-|     |  |  |  +**|
-|     |  |  |     +**Colletotrichum_acutatum_A7_IMI345581_AJ536212
-|     |  +--|
-|     |     |     +**Colletotrichum_fioriniae_1409_JN121192
-|     |     |  +**|
-|     |     |  |  +**Colletotrichum_fioriniae_ACUVA_JN121191
-|     |     +--|
-|     |        +**Colletotrichum_fioriniae_1491_JN121193
+|     |  +**Colletotrichum_acutatum_IMI117617_AF411700
 |  +**|
-|  |  +**Colletotrichum_acutatum_IMI117617_AF411700
+|  |  |        +**Colletotrichum_gloeosporioides_1765_JN121210
+|  |  |     +**|
+|  |  |     |  +**Colletotrichum_gloeosporioides_8_JN121209
+|  |  |  +--|
+|  |  |  |  +----------------------------------------------------------Colletotrichum_gloeosporioides_STEU4295_AY376532
+|  |  +--|
+|  |     |     +**Colletotrichum_musae_B15_DQ453986
+|  |     |  +**|
+|  |     |  |  +**Colletotrichum_musae_MUSAE_JN121212
+|  |     +--|
+|  |        +**Colletotrichum_musae_CBS116870_HQ596292
 +**|
-|  +**Colletotrichum_acutatum_IMI117620_FJ788417
-|
 |  +**Colletotrichum_acutatum_OLE_JN121189
-+**|
-   |     +**Colletotrichum_gloeosporioides_1765_JN121210
-   |  +--|
-   |  |  |  +**Colletotrichum_gloeosporioides_8_JN121209
-   |  |  +**|
-   |  |     +----------------------------------------------------------Colletotrichum_gloeosporioides_STEU4295_AY376532
-   +--|
-      |     +**Colletotrichum_musae_B15_DQ453986
-      |  +**|
-      |  |  +**Colletotrichum_musae_MUSAE_JN121212
-      +--|
-         +**Colletotrichum_musae_CBS116870_HQ596292
+|
++**Colletotrichum_acutatum_IMI117620_FJ788417
 
 Tree in newick format:
 
-(Colletotrichum_acutatum_67_JN121188:0.0000010000,(((((((Colletotrichum_acutatum_A1_CA546_AJ749674:0.0000010000,Colletotrichum_acutatum_A1_IMI350308_AJ300561:0.0000010000):0.0020594999,(Colletotrichum_acutatum_A8_TOM21_AF521196:0.0041342217,Colletotrichum_acutatum_A8_TOM9_AF521205:0.0041250845):0.0020774893):0.0041153468,(Colletotrichum_simmondsii_1036_JN121208:0.0000010000,Colletotrichum_simmondsii_UWS68_JN121199:0.0000010000):0.0000010000):0.0020774342,((Colletotrichum_simmondsii_1567_JN121203:0.0000010000,Colletotrichum_simmondsii_1568_JN121204:0.0000010000):0.0000010000,(Colletotrichum_simmondsii_BRIP28519_GU183331:0.0000010000,(Colletotrichum_simmondsii_PT135_AJ749683:0.0000020000,Colletotrichum_simmondsii_UWS137_JN121200:0.0000010000):0.0000010000):0.0000010000):0.0020764682):0.0048660924,((((Colletotrichum_acutatum_A6_PT250_AJ749700:0.0000010000,Colletotrichum_acutatum_A6_S2_AF411719:0.0000010000):0.0083512184,((Colletotrichum_clavatum_64_JN121168:0.0000025000,((Colletotrichum_clavatum_8689_JN121182:0.0000010000,Colletotrichum_clavatum_CBS19332_AJ749688:0.0000025000):0.0000010000,Colletotrichum_clavatum_PT169_AJ749685:0.0000020000):0.0000025000):0.0000020000,Colletotrichum_clavatum_JG05_AJ300557:0.0020750831):0.0062688150):0.0021030613,(Colletotrichum_acutatum_A7_BBA65797_AJ301925:0.0000010000,Colletotrichum_acutatum_A7_IMI345581_AJ536212:0.0000010000):0.0000010000):0.0137862086,((Colletotrichum_fioriniae_1409_JN121192:0.0000010000,Colletotrichum_fioriniae_ACUVA_JN121191:0.0000010000):0.0000020000,Colletotrichum_fioriniae_1491_JN121193:0.0000010000):0.0029754861):0.0042028464):0.0014323088,Colletotrichum_acutatum_IMI117617_AF411700:0.0000010000):0.0000010000,Colletotrichum_acutatum_IMI117620_FJ788417:0.0000020000):0.0000020000,(Colletotrichum_acutatum_OLE_JN121189:0.0000010000,((Colletotrichum_gloeosporioides_1765_JN121210:0.0000020000,(Colletotrichum_gloeosporioides_8_JN121209:0.0000010000,Colletotrichum_gloeosporioides_STEU4295_AY376532:9.9999980327):0.0000020000):0.0107023515,((Colletotrichum_musae_B15_DQ453986:0.0000010000,Colletotrichum_musae_MUSAE_JN121212:0.0000010000):0.0000010000,Colletotrichum_musae_CBS116870_HQ596292:0.0000010000):0.0042121793):0.1085300217):0.0000020000);
+(Colletotrichum_acutatum_67_JN121188:0.0000010000,((((((((Colletotrichum_acutatum_A1_CA546_AJ749674:0.0000010000,Colletotrichum_acutatum_A1_IMI350308_AJ300561:0.0000010000):0.0020595036,(Colletotrichum_acutatum_A8_TOM21_AF521196:0.0041342256,Colletotrichum_acutatum_A8_TOM9_AF521205:0.0041251400):0.0020774584):0.0041153192,(Colletotrichum_simmondsii_1036_JN121208:0.0000010000,Colletotrichum_simmondsii_UWS68_JN121199:0.0000010000):0.0000010000):0.0020772897,(((Colletotrichum_simmondsii_1567_JN121203:0.0000010000,(Colletotrichum_simmondsii_BRIP28519_GU183331:0.0000010000,Colletotrichum_simmondsii_UWS137_JN121200:0.0000010000):0.0000010000):0.0000025000,Colletotrichum_simmondsii_1568_JN121204:0.0000010000):0.0000010000,Colletotrichum_simmondsii_PT135_AJ749683:0.0000010000):0.0020764280):0.0048640851,((((Colletotrichum_acutatum_A6_PT250_AJ749700:0.0000010000,Colletotrichum_acutatum_A6_S2_AF411719:0.0000010000):0.0083508944,((Colletotrichum_clavatum_64_JN121168:0.0000021250,(Colletotrichum_clavatum_8689_JN121182:0.0000010000,Colletotrichum_clavatum_JG05_AJ300557:0.0020750701):0.0000020000):0.0000025000,(Colletotrichum_clavatum_CBS19332_AJ749688:0.0000010000,Colletotrichum_clavatum_PT169_AJ749685:0.0000010000):0.0000010000):0.0062675881):0.0021039970,(Colletotrichum_acutatum_A7_BBA65797_AJ301925:0.0000010000,Colletotrichum_acutatum_A7_IMI345581_AJ536212:0.0000010000):0.0000010000):0.0137839940,(Colletotrichum_fioriniae_1409_JN121192:0.0000010000,(Colletotrichum_fioriniae_1491_JN121193:0.0000020000,Colletotrichum_fioriniae_ACUVA_JN121191:0.0000010000):0.0000010000):0.0029774884):0.0042028996):0.0014310910,Colletotrichum_acutatum_IMI117617_AF411700:0.0000010000):0.0000010000,(((Colletotrichum_gloeosporioides_1765_JN121210:0.0000010000,Colletotrichum_gloeosporioides_8_JN121209:0.0000010000):0.0000020000,Colletotrichum_gloeosporioides_STEU4295_AY376532:9.9999980209):0.0107007064,((Colletotrichum_musae_B15_DQ453986:0.0000010000,Colletotrichum_musae_MUSAE_JN121212:0.0000010000):0.0000010000,Colletotrichum_musae_CBS116870_HQ596292:0.0000010000):0.0042125479):0.1085270198):0.0000027520,Colletotrichum_acutatum_OLE_JN121189:0.0000020000):0.0000010000,Colletotrichum_acutatum_IMI117620_FJ788417:0.0000020000);
 
 
 USER TREES
 ----------
 
-See /tmp/DNA.iqtree.trees for trees with branch lengths.
+See /Users/julia/Desktop/Promotion/DifficultyPrediction/LabelGenerator/tests/data/logs/DNA.iqtree.trees for trees with branch lengths.
 
 Tree      logL    deltaL  bp-RELL    p-KH     p-SH    p-WKH    p-WSH       c-ELW       p-AU
 -------------------------------------------------------------------------------------------
-  1 -1777.157674 0.048314    0.22 +  0.463 +  0.724 +  0.463 +  0.716 +     0.204 +    0.474 + 
-  2 -1777.706758  0.5974   0.214 +   0.44 +  0.631 +   0.44 +  0.681 +     0.204 +    0.387 + 
-  3  -1777.10936       0   0.144 +  0.725 +      1 +  0.537 +  0.905 +     0.181 +    0.571 + 
-  4 -1777.119995 0.010635   0.167 +  0.276 +  0.853 +  0.276 +  0.675 +     0.179 +    0.579 + 
-  5 -1777.597944 0.48858   0.255 +  0.451 +  0.646 +  0.451 +  0.692 +     0.232 +    0.487 + 
+  1 -1777.153836 0.048122  0.0012 -  0.466 +  0.945 +  0.466 +  0.993 +    0.0431 +    0.787 +
+  2 -1777.105714       0  0.0046 -  0.615 +      1 +  0.534 +  0.984 +    0.0452 +    0.626 +
+  3 -1779.920411  2.8147   0.124 +  0.232 +  0.541 +  0.239 +   0.41 +    0.0446 +     0.17 +
+  4 -1777.156185 0.050471  0.0082 -  0.464 +  0.945 + 0.0453 -  0.179 +     0.043 +    0.786 +
+  5 -1777.156575 0.050861  0.0125 -  0.464 +  0.945 + 0.0001 - 0.0001 -     0.043 +    0.788 +
+  6 -1777.156182 0.050468  0.0186 +  0.464 +  0.945 + 0.0479 -  0.181 +     0.043 +    0.787 +
+  7 -1777.171522 0.065808   0.028 +  0.458 +  0.943 +  0.201 +  0.725 +    0.0423 +    0.783 +
+  8 -1777.157767 0.052053   0.036 +  0.464 +  0.945 + 0.0114 -  0.047 -    0.0429 +    0.787 +
+  9  -1777.59674 0.49103  0.0309 +  0.453 +  0.846 +  0.453 +  0.963 +    0.0731 +    0.553 +
+ 10 -1777.601504 0.49579  0.0582 +  0.452 +  0.845 +  0.254 +  0.726 +    0.0729 +    0.558 +
+ 11  -1777.10618 0.0004663   0.027 +  0.424 +  0.961 +  0.424 +  0.952 +    0.0452 +    0.629 +
+ 12 -1777.596501 0.49079   0.074 +  0.453 +  0.846 +  0.453 +  0.976 +    0.0731 +    0.557 +
+ 13 -1777.705613  0.5999   0.165 +  0.437 +  0.831 +  0.437 +  0.844 +    0.0822 +    0.438 +
+ 14 -1777.598069 0.49235   0.106 +  0.452 +  0.846 +  0.346 +   0.98 +     0.073 +     0.56 +
+ 15 -1777.106119 0.00040512  0.0418 +  0.385 +  0.979 +  0.385 +  0.967 +    0.0452 +    0.626 +
+ 16 -1788.422835  11.317  0.0183 - 0.0823 +   0.14 + 0.0673 +  0.113 +    0.0101 -   0.0201 -
+ 17 -1777.109292 0.0035777  0.0513 +  0.179 +  0.927 +  0.015 -  0.108 +     0.045 +    0.632 +
+ 18  -1777.10878 0.0030658  0.0618 +  0.022 -  0.927 +      0 - 0.0074 -     0.045 +    0.628 +
+ 19 -1777.107744 0.00203  0.0705 + 0.0862 +  0.944 + 0.0862 +  0.395 +    0.0451 +    0.625 +
+ 20 -1777.154937 0.049223  0.0626 +  0.465 +  0.945 + 0.0788 +  0.291 +    0.0431 +    0.787 +
 
 deltaL  : logL difference from the maximal logl in the set.
 bp-RELL : bootstrap proportion using RELL method (Kishino et al. 1990).
@@ -182,7 +197,6 @@ All tests performed 10000 resamplings using the RELL method.
 TIME STAMP
 ----------
 
-Date and time: Mon Feb 24 15:09:18 2025
-Total CPU time used: 0.15 seconds (0h:0m:0s)
-Total wall-clock time used: 0.743 seconds (0h:0m:0s)
-
+Date and time: Tue Feb 25 07:59:50 2025
+Total CPU time used: 0.33 seconds (0h:0m:0s)
+Total wall-clock time used: 0.422 seconds (0h:0m:0s)
