@@ -4,7 +4,7 @@ runs:
   steps:
     - name: Download RAxML-NG MacOS
       if: runner.os == 'macOS'
-      run: wget https://github.com/amkozlov/raxml-ng/releases/download/1.2.2/raxml-ng_v1.2.2_macos_x86_64.zip
+      run: wget https://github.com/amkozlov/raxml-ng/releases/download/1.2.2/raxml-ng_v1.2.2_macos.zip
       shell: bash
     - name: Download RAxML-NG Linux
       if: runner.os == 'Linux'
