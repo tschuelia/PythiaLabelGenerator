@@ -35,7 +35,7 @@ def test_get_label(values, expected):
     assert computed == pytest.approx(expected)
 
 
-@pytest.mark.parametrize("data_type, expected_label", [(DataType.DNA, 0.743), (DataType.AA, 0.04), (DataType.MORPH, 0.173)])
+@pytest.mark.parametrize("data_type, expected_label", [(DataType.DNA, 0.772), (DataType.AA, 0.04), (DataType.MORPH, 0.173)])
 def test_compute_label(raxmlng_command, iqtree_command, data_dir, data_type, expected_label):
     msa_file = data_dir / f"{data_type.name}.phy"
 
@@ -49,7 +49,8 @@ def test_compute_label(raxmlng_command, iqtree_command, data_dir, data_type, exp
             prefix=prefix,
             n_trees=10,
             threads=4,
-            log_info=False
+            log_info=False,
+            seed=42
         )
         assert label == pytest.approx(expected_label, abs=0.01)
 
@@ -74,7 +75,7 @@ def test_compute_label_with_logging(raxmlng_command, iqtree_command, data_dir):
             n_trees=n_trees,
             threads=4,
             log_info=True,
-            seed=0
+            seed=42
         )
         assert label == pytest.approx(0.173, abs=0.01)
 
