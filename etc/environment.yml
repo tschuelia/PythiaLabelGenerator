@@ -5,6 +5,7 @@ channels:
 dependencies:
   - regex
   - loguru
+  - pytest
   - pip
   - pip:
     - git+https://github.com/tschuelia/PyPythia.git@dev  # TODO: change to regular dependency once PyPythia 2.0 is released

@@ -29,7 +29,7 @@ jobs:
         uses: ./.github/actions/setup-iqtree
       - name: Install LabelGenerator and setup requirements
         run: |
-          pip install -e .[test] --no-deps
+          pip install -e . --no-deps
           rm tests/test_config.py
           echo "RAXMLNG_COMMAND = '${{ env.raxmlng }}'" > tests/test_config.py
           echo "IQTREE_COMMAND = '${{ env.iqtree2 }}'" > tests/test_config.py
