@@ -12,7 +12,7 @@ runs:
       if: runner.os == 'Linux'
       run: |
         wget https://github.com/iqtree/iqtree2/releases/download/v2.4.0/iqtree-2.4.0-Linux-intel.tar.gz
-        unzip iqtree-*.tar.gz
+        tar xvf iqtree-*.tar.gz
       shell: bash
     - name: Unzip RAxML-NG and set Env variable
       run: echo iqtree2=$(pwd)/iqtree2 >> $GITHUB_ENV
