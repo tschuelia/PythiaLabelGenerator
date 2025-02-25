@@ -75,7 +75,7 @@ def compute_label(
 
     # 1. Infer 100 ML trees for the given MSA using RAxML-NG
     if log_info:
-        log_runtime_information(f"Inferring {n_trees} ML trees using RAxML-NG with {threads} threads.")
+        log_runtime_information(f"Inferring {n_trees} ML trees using RAxML-NG.")
 
     infer_ml_trees(
         msa=msa_file,
