@@ -1,5 +1,7 @@
+import datetime
 import math
 import pathlib
+import re
 import tempfile
 
 import pytest
@@ -16,6 +18,11 @@ from labelgenerator.raxmlng import (
 
 def test_inference_results_exist_and_correct(done_raxml_inference_prefix):
     assert _inference_results_exist_and_correct(done_raxml_inference_prefix, 6)
+
+
+def test_inference_results_exist_and_correct_nonexisting_files():
+    prefix = pathlib.Path("nonexisting")
+    assert not _inference_results_exist_and_correct(prefix, 6)
 
 
 def test_inference_results_exist_and_correct_incorrect_ntrees(
@@ -91,6 +98,42 @@ def test_infer_ml_trees_for_dtypes(raxmlng_command, data_dir, data_type):
             redo=True,
         )
         assert _inference_results_exist_and_correct(prefix, n_trees)
+
+
+@pytest.mark.parametrize("data_type", [DataType.DNA, DataType.AA, DataType.MORPH])
+def test_infer_ml_trees_existing_files(
+    raxmlng_command, ml_tree_dir, data_dir, data_type
+):
+    test_start = datetime.datetime.now()
+
+    msa = data_dir / f"{data_type.name}.phy"
+    model = parse(msa).get_raxmlng_model()
+    prefix = ml_tree_dir / f"{data_type.name}"
+    n_trees = 20
+
+    # sanity check
+    assert _inference_results_exist_and_correct(prefix, n_trees)
+
+    infer_ml_trees(
+        msa,
+        raxmlng_command,
+        model,
+        prefix,
+        n_trees,
+        42,
+        threads=4,
+        redo=False,
+    )
+    assert _inference_results_exist_and_correct(prefix, n_trees)
+
+    # The results should have existed already, so the end date in the RAxML-NG log file should be before test_start
+    # Logline looks like this: Analysis started: 24-Feb-2025 12:46:35 / finished: 24-Feb-2025 12:46:40
+    logfile = pathlib.Path(f"{prefix}.raxml.log")
+    logged_raxmlng_end = datetime.datetime.strptime(
+        re.search(r"finished: (.+)$", logfile.read_text(), re.MULTILINE).group(1),
+        "%d-%b-%Y %H:%M:%S",
+    )
+    assert logged_raxmlng_end < test_start
 
 
 def test_infer_ml_trees_fails_for_n_trees_less_than_1(raxmlng_command, dna_msa):

@@ -65,6 +65,10 @@ def test_run_statstests_existing_files(
 ):
     test_start = datetime.datetime.now()
     prefix = log_dir / f"{data_type.name}.iqtree"
+
+    # sanity check
+    assert _iqtree_results_exist_and_done(prefix)
+
     run_statstests(
         msa=data_dir / f"{data_type.name}.phy",
         ml_trees=ml_tree_dir / f"{data_type.name}.raxml.mlTrees",
