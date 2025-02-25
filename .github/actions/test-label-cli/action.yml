@@ -8,5 +8,5 @@ runs:
   steps:
     - name: Run Label CLI with an exemplary MSA to make sure everything is working
       run: |
-        label -m ${{ inputs.msa-file }} -r ${{ env.raxmlng }} -i ${{ env.iqtree2 }} --ntrees 4 --threads 4
+        label -m ${{ inputs.msa-file }} -r ${{ env.raxmlng }} -i ${{ env.iqtree2 }} --ntrees 4
       shell: bash -el {0}
