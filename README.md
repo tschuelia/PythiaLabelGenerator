@@ -38,7 +38,7 @@ The difficulty is then computed as follows:
 
 For further details on the reasoning and validation of this difficulty, please refer to the publication linked above.
 
-We infer the ML trees using [RAxML-NG]((https://github.com/amkozlov/raxml-ng) and use the statistical significance tests
+We infer the ML trees using [RAxML-NG](https://github.com/amkozlov/raxml-ng) and use the statistical significance tests
 as implemented in [IQ-TREE](http://www.iqtree.org).
 Per default, the difficulty is based on $`N_{\text{all}}=100`$ ML trees.
 Note that this number can be adjusted by the user, however, the difficulty will only be an approximation if the number
