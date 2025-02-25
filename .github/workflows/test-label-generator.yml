@@ -36,7 +36,7 @@ jobs:
           cat tests/test_config.py
       - name: Run LabelGenerator tests
         run: |
-          PYTHONPATH=. pytest
+          PYTHONPATH=. pytest -svx
         shell: bash -el {0}
 
   Install-using-conda:
