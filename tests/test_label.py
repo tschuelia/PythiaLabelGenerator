@@ -4,6 +4,7 @@ import tempfile
 import pytest
 
 from labelgenerator.label import get_label, compute_label
+from labelgenerator.logger import logger
 from pypythia.custom_types import DataType
 
 
@@ -51,3 +52,38 @@ def test_compute_label(raxmlng_command, iqtree_command, data_dir, data_type, exp
             log_info=False
         )
         assert label == pytest.approx(expected_label, abs=0.01)
+
+
+def test_compute_label_with_logging(raxmlng_command, iqtree_command, data_dir):
+    msa_file = data_dir / "MORPH.phy"
+    n_trees = 10
+    n_threads = 4
+
+    with tempfile.TemporaryDirectory() as tmpdir:
+        prefix = pathlib.Path(tmpdir) / "test"
+
+        # Prevent logging to stdout/stderr during tests
+        logger.remove()
+        logfile = pathlib.Path(f"{prefix}.labelGen.log")
+        logger.add(logfile, format="{message}")
+
+        label = compute_label(
+            msa_file=msa_file,
+            raxmlng=raxmlng_command,
+            iqtree=iqtree_command,
+            prefix=prefix,
+            n_trees=n_trees,
+            threads=4,
+            log_info=True,
+            seed=0
+        )
+        assert label == pytest.approx(0.214, abs=0.01)
+
+        logfile_content = logfile.read_text()
+
+        assert f"Inferring {n_trees} ML trees using RAxML-NG with {n_threads} threads." in logfile_content
+        assert f"RF-Distance ML trees: 0.26" in logfile_content
+        assert "Unique topologies ML trees: 3" in logfile_content
+        assert "Found 9 plausible trees." in logfile_content
+        assert "RF-Distance plausible trees: 0.19" in logfile_content
+        assert "Unique topologies plausible trees: 2" in logfile_content
