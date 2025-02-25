@@ -1,0 +1,85 @@
+IQ-TREE multicore version 2.1.3 COVID-edition for Mac OS X 64-bit built Oct  4 2021
+Developed by Bui Quang Minh, James Barbetti, Nguyen Lam Tung,
+Olga Chernomor, Heiko Schmidt, Dominik Schrempf, Michael Woodhams.
+
+Host:    MacBookPro.fritz.box (SSE4.2, 16 GB RAM)
+Command: /Users/julia/Software/iqtree-2.1.3-MacOSX/bin/iqtree2 -s LabelGenerator/tests/data/MORPH.phy -m MK -pre /tmp/MORPH.iqtree -z LabelGenerator/tests/data/mltrees/MORPH.raxml.mlTrees -treediff -te LabelGenerator/tests/data/mltrees/MORPH.raxml.bestTree -n 0 -zb 10000 -zw -au -seed 42 -nt 4 -redo
+Seed:    42 (Using SPRNG - Scalable Parallel Random Number Generator)
+Time:    Mon Feb 24 15:39:21 2025
+Kernel:  SSE2 - 4 threads (8 CPU cores detected)
+
+Reading alignment file LabelGenerator/tests/data/MORPH.phy ... Phylip format detected
+Alignment most likely contains 3-state morphological data
+Alignment has 5 sequences with 8 columns, 5 distinct patterns
+6 parsimony-informative, 2 singleton sites, 0 constant sites
+                         Gap/Ambiguity  Composition  p-value
+   1  Amytornis                  0.00%    failed      0.01%
+   2  Stipiturus_malachurus      0.00%    passed      6.55%
+   3  Stipiturus_mallee          0.00%    passed     59.60%
+   4  Stipiturus_ruficeps        0.00%    passed     16.46%
+   5  Stipiturus_westernensis    0.00%    passed      6.55%
+****  TOTAL                      0.00%  1 sequences failed composition chi2 test (p-value<5%; df=2)
+NOTE: Stipiturus_westernensis is identical to Stipiturus_malachurus but kept for subsequent analysis
+Reading input tree file LabelGenerator/tests/data/mltrees/MORPH.raxml.bestTree ...
+WARNING: 4 threads for alignment length 5 will slow down analysis
+
+NOTE: 0 MB RAM (0 GB) is required!
+Estimate model parameters (epsilon = 0.010)
+1. Initial log-likelihood: -30.757
+Optimal log-likelihood: -30.074
+Parameters optimization took 1 rounds (0.001 sec)
+BEST SCORE FOUND : -30.074
+Total tree length: 49.298
+
+Total number of iterations: 0
+CPU time used for tree search: 0.000 sec (0h:0m:0s)
+Wall-clock time used for tree search: 0.000 sec (0h:0m:0s)
+Total CPU time used: 0.075 sec (0h:0m:0s)
+Total wall-clock time used: 0.022 sec (0h:0m:0s)
+Reading trees in LabelGenerator/tests/data/mltrees/MORPH.raxml.mlTrees ...
+
+WARNING: 20 trees detected but only 2 distinct trees will be evaluated
+Note: 0.496 MB of RAM required!
+Creating 10000 bootstrap replicates...
+done
+Tree 1 / LogL: -30.074
+Tree 2 / identical to tree 1
+Tree 3 / identical to tree 1
+Tree 4 / LogL: -30.074
+Tree 5 / identical to tree 4
+Tree 6 / identical to tree 4
+Tree 7 / identical to tree 1
+Tree 8 / identical to tree 1
+Tree 9 / identical to tree 4
+Tree 10 / identical to tree 4
+Tree 11 / identical to tree 4
+Tree 12 / identical to tree 1
+Tree 13 / identical to tree 1
+Tree 14 / identical to tree 4
+Tree 15 / identical to tree 4
+Tree 16 / identical to tree 1
+Tree 17 / identical to tree 4
+Tree 18 / identical to tree 4
+Tree 19 / identical to tree 4
+Tree 20 / identical to tree 1
+Performing RELL-BP test...
+Performing KH and SH test...
+Computing pairwise logl difference variance ...
+Performing WKH and WSH test...
+Performing ELW test...
+Performing approximately unbiased (AU) test...
+1 MB required for AU test
+Generating 10 x 10000 multiscale bootstrap replicates... 0.014 seconds
+TreeID	AU	RSS	d	c
+1	0.840	1037.957	-0.960	0.036 !!!
+2	0.160	1037.957	0.960	-0.036 !!!
+Time for AU test: 0.014 seconds
+Time for evaluating all trees: 0.018 sec.
+
+Analysis results written to: 
+  IQ-TREE report:                /tmp/MORPH.iqtree.iqtree
+  Maximum-likelihood tree:       /tmp/MORPH.iqtree.treefile
+  Evaluated user trees:          /tmp/MORPH.iqtree.trees
+  Screen log file:               /tmp/MORPH.iqtree.log
+
+Date and Time: Mon Feb 24 15:39:21 2025

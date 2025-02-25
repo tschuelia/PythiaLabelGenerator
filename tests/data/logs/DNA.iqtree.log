@@ -1,0 +1,247 @@
+IQ-TREE multicore version 2.1.3 COVID-edition for Mac OS X 64-bit built Oct  4 2021
+Developed by Bui Quang Minh, James Barbetti, Nguyen Lam Tung,
+Olga Chernomor, Heiko Schmidt, Dominik Schrempf, Michael Woodhams.
+
+Host:    Julias-MacBook-Pro.local (SSE4.2, 16 GB RAM)
+Command: /Users/julia/Software/iqtree-2.1.3-MacOSX/bin/iqtree2 -s /Users/julia/Desktop/Promotion/DifficultyPrediction/LabelGenerator/tests/data/DNA.phy -m GTR+G4+FO -pre /Users/julia/Desktop/Promotion/DifficultyPrediction/LabelGenerator/tests/data/logs/DNA.iqtree -z /Users/julia/Desktop/Promotion/DifficultyPrediction/LabelGenerator/tests/data/mltrees/DNA.raxml.mlTrees -treediff -te /Users/julia/Desktop/Promotion/DifficultyPrediction/LabelGenerator/tests/data/mltrees/DNA.raxml.bestTree -n 0 -zb 10000 -zw -au -seed 42 -nt 4 -redo
+Seed:    42 (Using SPRNG - Scalable Parallel Random Number Generator)
+Time:    Tue Feb 25 07:59:49 2025
+Kernel:  SSE2 - 4 threads (8 CPU cores detected)
+
+Reading alignment file /Users/julia/Desktop/Promotion/DifficultyPrediction/LabelGenerator/tests/data/DNA.phy ... Phylip format detected
+Alignment most likely contains DNA/RNA sequences
+Alignment has 79 sequences with 501 columns, 112 distinct patterns
+65 parsimony-informative, 275 singleton sites, 161 constant sites
+                                                   Gap/Ambiguity  Composition  p-value
+   1  Colletotrichum_acutatum_67_JN121188                  2.20%    passed     98.12%
+   2  Colletotrichum_acutatum_A1_CA546_AJ749674            2.00%    passed     98.07%
+   3  Colletotrichum_acutatum_A1_IMI350308_AJ300561        2.00%    passed     98.07%
+   4  Colletotrichum_acutatum_A6_PT250_AJ749700            2.59%    passed     99.54%
+   5  Colletotrichum_acutatum_A6_S2_AF411719               2.40%    passed     99.58%
+   6  Colletotrichum_acutatum_A7_BBA65797_AJ301925         2.40%    passed     99.96%
+   7  Colletotrichum_acutatum_A7_IMI345581_AJ536212        2.99%    passed    100.00%
+   8  Colletotrichum_acutatum_A8_TOM21_AF521196            2.00%    passed     96.79%
+   9  Colletotrichum_acutatum_A8_TOM9_AF521205             1.80%    passed     93.42%
+  10  Colletotrichum_acutatum_IMI117617_AF411700          26.35%    passed     83.97%
+  11  Colletotrichum_acutatum_IMI117620_FJ788417           2.20%    passed     98.12%
+  12  Colletotrichum_acutatum_OLE_JN121189                 4.99%    passed     95.30%
+  13  Colletotrichum_acutatum_UWS103_JN121184              2.20%    passed     98.12%
+  14  Colletotrichum_acutatum_UWS14_JN121183               2.20%    passed     98.12%
+  15  Colletotrichum_acutatum_UWS147_JN121185              2.20%    passed     98.12%
+  16  Colletotrichum_acutatum_UWS149_JN121186              2.20%    passed     98.12%
+  17  Colletotrichum_acutatum_UWS166_JN121187              2.20%    passed     98.12%
+  18  Colletotrichum_clavatum_64_JN121168                  2.40%    passed     99.65%
+  19  Colletotrichum_clavatum_8689_JN121182                2.40%    passed     99.65%
+  20  Colletotrichum_clavatum_AZJ_JN121181                 2.40%    passed     99.65%
+  21  Colletotrichum_clavatum_CAMP30_JN121149              2.40%    passed     99.65%
+  22  Colletotrichum_clavatum_CAMP36_JN121142              2.40%    passed     99.65%
+  23  Colletotrichum_clavatum_CBS19332_AJ749688            2.59%    passed     99.88%
+  24  Colletotrichum_clavatum_CGMUL_JN121179               2.40%    passed     99.65%
+  25  Colletotrichum_clavatum_CIRRI_JN121164               2.40%    passed     99.65%
+  26  Colletotrichum_clavatum_IMI398854_JN121126           2.40%    passed     99.65%
+  27  Colletotrichum_clavatum_IMI398855_JN121147           2.40%    passed     99.65%
+  28  Colletotrichum_clavatum_ITRANA1_JN121132             2.40%    passed     99.65%
+  29  Colletotrichum_clavatum_JG05_AJ300557                2.40%    passed     99.27%
+  30  Colletotrichum_clavatum_MELA_JN121180                2.40%    passed     99.65%
+  31  Colletotrichum_clavatum_OL11_JN121130                2.40%    passed     99.65%
+  32  Colletotrichum_clavatum_OL14_JN121139                2.40%    passed     99.65%
+  33  Colletotrichum_clavatum_OL17_JN121155                2.40%    passed     99.65%
+  34  Colletotrichum_clavatum_OL21_JN121156                2.40%    passed     99.65%
+  35  Colletotrichum_clavatum_OL5_JN121128                 2.40%    passed     99.65%
+  36  Colletotrichum_clavatum_OLF21_JN121159               2.40%    passed     99.65%
+  37  Colletotrichum_clavatum_OLF22_JN121160               2.40%    passed     99.65%
+  38  Colletotrichum_clavatum_OLF40_JN121161               2.40%    passed     99.65%
+  39  Colletotrichum_clavatum_OLF48_JN121162               2.40%    passed     99.65%
+  40  Colletotrichum_clavatum_OLF97E_JN121163              2.40%    passed     99.65%
+  41  Colletotrichum_clavatum_OLP10_JN121135               2.40%    passed     99.65%
+  42  Colletotrichum_clavatum_OLP11_JN121136               2.40%    passed     99.65%
+  43  Colletotrichum_clavatum_OLP12_JN121137               2.40%    passed     99.65%
+  44  Colletotrichum_clavatum_OLP13_JN121138               2.40%    passed     99.65%
+  45  Colletotrichum_clavatum_OLP14_JN121139               2.40%    passed     99.65%
+  46  Colletotrichum_clavatum_OLP2_JN121133                2.40%    passed     99.65%
+  47  Colletotrichum_clavatum_OLP8_JN121134                2.40%    passed     99.65%
+  48  Colletotrichum_clavatum_ORA1_JN121174                2.40%    passed     99.65%
+  49  Colletotrichum_clavatum_PT169_AJ749685               2.59%    passed     99.88%
+  50  Colletotrichum_clavatum_UMB1B_JN121177               2.40%    passed     99.65%
+  51  Colletotrichum_fioriniae_1409_JN121192               2.00%    passed     99.23%
+  52  Colletotrichum_fioriniae_1491_JN121193               2.00%    passed     99.23%
+  53  Colletotrichum_fioriniae_ACUVA_JN121191              2.20%    passed     98.81%
+  54  Colletotrichum_fioriniae_EHS58_EF464594              2.00%    passed     99.23%
+  55  Colletotrichum_fioriniae_OLPUGLIA_JN121190           2.00%    passed     99.23%
+  56  Colletotrichum_fioriniae_STEU5287_AY376509           2.00%    passed     99.23%
+  57  Colletotrichum_gloeosporioides_1765_JN121210         3.79%    passed     87.04%
+  58  Colletotrichum_gloeosporioides_8_JN121209            3.79%    passed     87.04%
+  59  Colletotrichum_gloeosporioides_C2_JN121211           3.79%    passed     87.04%
+  60  Colletotrichum_gloeosporioides_IMI356878_EU371022    3.79%    passed     87.04%
+  61  Colletotrichum_gloeosporioides_STEU4295_AY376532     6.19%    passed     91.65%
+  62  Colletotrichum_musae_B15_DQ453986                    3.79%    passed     91.34%
+  63  Colletotrichum_musae_CBS116870_HQ596292              2.99%    passed     87.44%
+  64  Colletotrichum_musae_MUSAE_JN121212                  3.79%    passed     91.34%
+  65  Colletotrichum_simmondsii_1036_JN121208              2.20%    passed     99.24%
+  66  Colletotrichum_simmondsii_1567_JN121203              2.00%    passed     99.39%
+  67  Colletotrichum_simmondsii_1568_JN121204              2.00%    passed     99.39%
+  68  Colletotrichum_simmondsii_1568B_JN121205             2.00%    passed     99.39%
+  69  Colletotrichum_simmondsii_1570_JN121207              2.00%    passed     99.39%
+  70  Colletotrichum_simmondsii_1572_JN121206              2.00%    passed     99.39%
+  71  Colletotrichum_simmondsii_725_JN121194               2.00%    passed     99.39%
+  72  Colletotrichum_simmondsii_BRIP28519_GU183331         1.60%    passed     99.27%
+  73  Colletotrichum_simmondsii_CBS23149_JN121201          2.00%    passed     99.39%
+  74  Colletotrichum_simmondsii_FRA_JN121197               2.00%    passed     99.39%
+  75  Colletotrichum_simmondsii_PT135_AJ749683             2.40%    passed     99.23%
+  76  Colletotrichum_simmondsii_SPL100_JN121195            2.00%    passed     99.39%
+  77  Colletotrichum_simmondsii_STEU4452_AY376503          2.00%    passed     99.39%
+  78  Colletotrichum_simmondsii_UWS137_JN121200            1.60%    passed     99.27%
+  79  Colletotrichum_simmondsii_UWS68_JN121199             2.20%    passed     99.24%
+****  TOTAL                                                2.76%  0 sequences failed composition chi2 test (p-value<5%; df=3)
+NOTE: Colletotrichum_acutatum_IMI117620_FJ788417 is identical to Colletotrichum_acutatum_67_JN121188 but kept for subsequent analysis
+NOTE: Colletotrichum_acutatum_A1_IMI350308_AJ300561 is identical to Colletotrichum_acutatum_A1_CA546_AJ749674 but kept for subsequent analysis
+NOTE: Colletotrichum_clavatum_8689_JN121182 is identical to Colletotrichum_clavatum_64_JN121168 but kept for subsequent analysis
+NOTE: Colletotrichum_clavatum_PT169_AJ749685 is identical to Colletotrichum_clavatum_CBS19332_AJ749688 but kept for subsequent analysis
+NOTE: Colletotrichum_fioriniae_1491_JN121193 is identical to Colletotrichum_fioriniae_1409_JN121192 but kept for subsequent analysis
+NOTE: Colletotrichum_gloeosporioides_8_JN121209 is identical to Colletotrichum_gloeosporioides_1765_JN121210 but kept for subsequent analysis
+NOTE: Colletotrichum_musae_MUSAE_JN121212 is identical to Colletotrichum_musae_B15_DQ453986 but kept for subsequent analysis
+NOTE: Colletotrichum_simmondsii_UWS68_JN121199 is identical to Colletotrichum_simmondsii_1036_JN121208 but kept for subsequent analysis
+NOTE: Colletotrichum_simmondsii_1568_JN121204 is identical to Colletotrichum_simmondsii_1567_JN121203 but kept for subsequent analysis
+NOTE: Colletotrichum_simmondsii_UWS137_JN121200 is identical to Colletotrichum_simmondsii_BRIP28519_GU183331 but kept for subsequent analysis
+NOTE: 46 identical sequences (see below) will be ignored for subsequent analysis
+NOTE: Colletotrichum_acutatum_UWS103_JN121184 (identical to Colletotrichum_acutatum_67_JN121188) is ignored but added at the end
+NOTE: Colletotrichum_acutatum_UWS14_JN121183 (identical to Colletotrichum_acutatum_67_JN121188) is ignored but added at the end
+NOTE: Colletotrichum_acutatum_UWS147_JN121185 (identical to Colletotrichum_acutatum_67_JN121188) is ignored but added at the end
+NOTE: Colletotrichum_acutatum_UWS149_JN121186 (identical to Colletotrichum_acutatum_67_JN121188) is ignored but added at the end
+NOTE: Colletotrichum_acutatum_UWS166_JN121187 (identical to Colletotrichum_acutatum_67_JN121188) is ignored but added at the end
+NOTE: Colletotrichum_clavatum_AZJ_JN121181 (identical to Colletotrichum_clavatum_64_JN121168) is ignored but added at the end
+NOTE: Colletotrichum_clavatum_CAMP30_JN121149 (identical to Colletotrichum_clavatum_64_JN121168) is ignored but added at the end
+NOTE: Colletotrichum_clavatum_CAMP36_JN121142 (identical to Colletotrichum_clavatum_64_JN121168) is ignored but added at the end
+NOTE: Colletotrichum_clavatum_CGMUL_JN121179 (identical to Colletotrichum_clavatum_64_JN121168) is ignored but added at the end
+NOTE: Colletotrichum_clavatum_CIRRI_JN121164 (identical to Colletotrichum_clavatum_64_JN121168) is ignored but added at the end
+NOTE: Colletotrichum_clavatum_IMI398854_JN121126 (identical to Colletotrichum_clavatum_64_JN121168) is ignored but added at the end
+NOTE: Colletotrichum_clavatum_IMI398855_JN121147 (identical to Colletotrichum_clavatum_64_JN121168) is ignored but added at the end
+NOTE: Colletotrichum_clavatum_ITRANA1_JN121132 (identical to Colletotrichum_clavatum_64_JN121168) is ignored but added at the end
+NOTE: Colletotrichum_clavatum_MELA_JN121180 (identical to Colletotrichum_clavatum_64_JN121168) is ignored but added at the end
+NOTE: Colletotrichum_clavatum_OL11_JN121130 (identical to Colletotrichum_clavatum_64_JN121168) is ignored but added at the end
+NOTE: Colletotrichum_clavatum_OL14_JN121139 (identical to Colletotrichum_clavatum_64_JN121168) is ignored but added at the end
+NOTE: Colletotrichum_clavatum_OL17_JN121155 (identical to Colletotrichum_clavatum_64_JN121168) is ignored but added at the end
+NOTE: Colletotrichum_clavatum_OL21_JN121156 (identical to Colletotrichum_clavatum_64_JN121168) is ignored but added at the end
+NOTE: Colletotrichum_clavatum_OL5_JN121128 (identical to Colletotrichum_clavatum_64_JN121168) is ignored but added at the end
+NOTE: Colletotrichum_clavatum_OLF21_JN121159 (identical to Colletotrichum_clavatum_64_JN121168) is ignored but added at the end
+NOTE: Colletotrichum_clavatum_OLF22_JN121160 (identical to Colletotrichum_clavatum_64_JN121168) is ignored but added at the end
+NOTE: Colletotrichum_clavatum_OLF40_JN121161 (identical to Colletotrichum_clavatum_64_JN121168) is ignored but added at the end
+NOTE: Colletotrichum_clavatum_OLF48_JN121162 (identical to Colletotrichum_clavatum_64_JN121168) is ignored but added at the end
+NOTE: Colletotrichum_clavatum_OLF97E_JN121163 (identical to Colletotrichum_clavatum_64_JN121168) is ignored but added at the end
+NOTE: Colletotrichum_clavatum_OLP10_JN121135 (identical to Colletotrichum_clavatum_64_JN121168) is ignored but added at the end
+NOTE: Colletotrichum_clavatum_OLP11_JN121136 (identical to Colletotrichum_clavatum_64_JN121168) is ignored but added at the end
+NOTE: Colletotrichum_clavatum_OLP12_JN121137 (identical to Colletotrichum_clavatum_64_JN121168) is ignored but added at the end
+NOTE: Colletotrichum_clavatum_OLP13_JN121138 (identical to Colletotrichum_clavatum_64_JN121168) is ignored but added at the end
+NOTE: Colletotrichum_clavatum_OLP14_JN121139 (identical to Colletotrichum_clavatum_64_JN121168) is ignored but added at the end
+NOTE: Colletotrichum_clavatum_OLP2_JN121133 (identical to Colletotrichum_clavatum_64_JN121168) is ignored but added at the end
+NOTE: Colletotrichum_clavatum_OLP8_JN121134 (identical to Colletotrichum_clavatum_64_JN121168) is ignored but added at the end
+NOTE: Colletotrichum_clavatum_ORA1_JN121174 (identical to Colletotrichum_clavatum_64_JN121168) is ignored but added at the end
+NOTE: Colletotrichum_clavatum_UMB1B_JN121177 (identical to Colletotrichum_clavatum_64_JN121168) is ignored but added at the end
+NOTE: Colletotrichum_fioriniae_EHS58_EF464594 (identical to Colletotrichum_fioriniae_1409_JN121192) is ignored but added at the end
+NOTE: Colletotrichum_fioriniae_OLPUGLIA_JN121190 (identical to Colletotrichum_fioriniae_1409_JN121192) is ignored but added at the end
+NOTE: Colletotrichum_fioriniae_STEU5287_AY376509 (identical to Colletotrichum_fioriniae_1409_JN121192) is ignored but added at the end
+NOTE: Colletotrichum_gloeosporioides_C2_JN121211 (identical to Colletotrichum_gloeosporioides_1765_JN121210) is ignored but added at the end
+NOTE: Colletotrichum_gloeosporioides_IMI356878_EU371022 (identical to Colletotrichum_gloeosporioides_1765_JN121210) is ignored but added at the end
+NOTE: Colletotrichum_simmondsii_1568B_JN121205 (identical to Colletotrichum_simmondsii_1567_JN121203) is ignored but added at the end
+NOTE: Colletotrichum_simmondsii_1570_JN121207 (identical to Colletotrichum_simmondsii_1567_JN121203) is ignored but added at the end
+NOTE: Colletotrichum_simmondsii_1572_JN121206 (identical to Colletotrichum_simmondsii_1567_JN121203) is ignored but added at the end
+NOTE: Colletotrichum_simmondsii_725_JN121194 (identical to Colletotrichum_simmondsii_1567_JN121203) is ignored but added at the end
+NOTE: Colletotrichum_simmondsii_CBS23149_JN121201 (identical to Colletotrichum_simmondsii_1567_JN121203) is ignored but added at the end
+NOTE: Colletotrichum_simmondsii_FRA_JN121197 (identical to Colletotrichum_simmondsii_1567_JN121203) is ignored but added at the end
+NOTE: Colletotrichum_simmondsii_SPL100_JN121195 (identical to Colletotrichum_simmondsii_1567_JN121203) is ignored but added at the end
+NOTE: Colletotrichum_simmondsii_STEU4452_AY376503 (identical to Colletotrichum_simmondsii_1567_JN121203) is ignored but added at the end
+Alignment was printed to /Users/julia/Desktop/Promotion/DifficultyPrediction/LabelGenerator/tests/data/logs/DNA.iqtree.uniqueseq.phy
+
+For your convenience alignment with unique sequences printed to /Users/julia/Desktop/Promotion/DifficultyPrediction/LabelGenerator/tests/data/logs/DNA.iqtree.uniqueseq.phy
+Reading input tree file /Users/julia/Desktop/Promotion/DifficultyPrediction/LabelGenerator/tests/data/mltrees/DNA.raxml.bestTree ...
+
+NOTE: 0 MB RAM (0 GB) is required!
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
+Estimate model parameters (epsilon = 0.010)
+1. Initial log-likelihood: -1811.317
+2. Current log-likelihood: -1779.639
+3. Current log-likelihood: -1778.725
+4. Current log-likelihood: -1778.034
+5. Current log-likelihood: -1777.467
+6. Current log-likelihood: -1777.158
+Optimal log-likelihood: -1777.154
+Rate parameters:  A-C: 25.07223  A-G: 51.74516  A-T: 41.28718  C-G: 29.53530  C-T: 99.59930  G-T: 1.00000
+Base frequencies:  A: 0.220  C: 0.286  G: 0.255  T: 0.239
+Gamma shape alpha: 0.678
+Parameters optimization took 6 rounds (0.070 sec)
+
+WARNING: Estimated model parameters are at boundary that can cause numerical instability!
+
+BEST SCORE FOUND : -1777.154
+Total tree length: 10.190
+
+Total number of iterations: 0
+CPU time used for tree search: 0.000 sec (0h:0m:0s)
+Wall-clock time used for tree search: 0.000 sec (0h:0m:0s)
+Total CPU time used: 0.330 sec (0h:0m:0s)
+Total wall-clock time used: 0.089 sec (0h:0m:0s)
+Reading trees in /Users/julia/Desktop/Promotion/DifficultyPrediction/LabelGenerator/tests/data/mltrees/DNA.raxml.mlTrees ...
+
+20 distinct trees detected
+Note: 5.974 MB of RAM required!
+Creating 10000 bootstrap replicates...
+done
+Tree 1 / LogL: -1777.154
+Tree 2 / LogL: -1777.106
+Tree 3 / LogL: -1779.920
+Tree 4 / LogL: -1777.156
+Tree 5 / LogL: -1777.157
+Tree 6 / LogL: -1777.156
+Tree 7 / LogL: -1777.172
+Tree 8 / LogL: -1777.158
+Tree 9 / LogL: -1777.597
+Tree 10 / LogL: -1777.602
+Tree 11 / LogL: -1777.106
+Tree 12 / LogL: -1777.597
+Tree 13 / LogL: -1777.706
+Tree 14 / LogL: -1777.598
+Tree 15 / LogL: -1777.106
+Tree 16 / LogL: -1788.423
+Tree 17 / LogL: -1777.109
+Tree 18 / LogL: -1777.109
+Tree 19 / LogL: -1777.108
+Tree 20 / LogL: -1777.155
+Performing RELL-BP test...
+Performing KH and SH test...
+Computing pairwise logl difference variance ...
+Performing WKH and WSH test...
+Performing ELW test...
+Performing approximately unbiased (AU) test...
+15 MB required for AU test
+Generating 10 x 10000 multiscale bootstrap replicates... 0.208 seconds
+TreeID	AU	RSS	d	c
+1	0.787	19.112	0.007	0.803
+2	0.626	17.953	0.229	0.552
+3	0.170	20.705	0.917	-0.036 !!!
+4	0.786	19.895	0.006	0.801
+5	0.788	19.704	0.011	0.811
+6	0.787	19.889	0.006	0.801
+7	0.783	19.697	-0.023	0.758
+8	0.787	18.505	-0.024	0.771
+9	0.553	18.043	0.272	0.405
+10	0.558	18.056	0.265	0.411
+11	0.629	18.417	0.222	0.551
+12	0.557	17.750	0.265	0.408
+13	0.438	15.181	0.490	0.334
+14	0.560	16.280	0.265	0.415
+15	0.626	18.113	0.231	0.552
+16	0.020	1.852	2.088	0.038
+17	0.632	17.618	0.219	0.557
+18	0.628	17.253	0.227	0.555
+19	0.625	17.886	0.232	0.550
+20	0.787	19.585	-0.004	0.792
+Time for AU test: 0.209 seconds
+Time for evaluating all trees: 0.325 sec.
+
+Analysis results written to: 
+  IQ-TREE report:                /Users/julia/Desktop/Promotion/DifficultyPrediction/LabelGenerator/tests/data/logs/DNA.iqtree.iqtree
+  Maximum-likelihood tree:       /Users/julia/Desktop/Promotion/DifficultyPrediction/LabelGenerator/tests/data/logs/DNA.iqtree.treefile
+  Evaluated user trees:          /Users/julia/Desktop/Promotion/DifficultyPrediction/LabelGenerator/tests/data/logs/DNA.iqtree.trees
+  Screen log file:               /Users/julia/Desktop/Promotion/DifficultyPrediction/LabelGenerator/tests/data/logs/DNA.iqtree.log
+
+Date and Time: Tue Feb 25 07:59:50 2025

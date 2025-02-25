@@ -1,0 +1,35 @@
+
+RAxML-NG v. 1.2.2 released on 30.04.2024 by The Exelixis Lab.
+Developed by: Alexey M. Kozlov and Alexandros Stamatakis.
+Contributors: Diego Darriba, Tomas Flouri, Benoit Morel, Sarah Lutteropp, Ben Bettisworth, Julia Haag, Anastasis Togkousidis.
+Latest version: https://github.com/amkozlov/raxml-ng
+Questions/problems/suggestions? Please visit: https://groups.google.com/forum/#!forum/raxml
+
+System: Apple M1 Pro, 8 cores, 16 GB RAM
+
+RAxML-NG was called at 24-Feb-2025 14:16:18 as follows:
+
+/Users/julia/Software/raxml-ng_v1/raxml-ng --rfdist test.raxml.mlTrees
+
+Analysis options:
+  run mode: RF distance computation
+  start tree(s): user
+  random seed: 1740402978
+  SIMD kernels: SSE3
+  parallelization: coarse-grained (auto), PTHREADS (auto)
+
+Reading input trees from file: test.raxml.mlTrees
+Loaded 6 trees with 27 taxa.
+
+Average absolute RF distance in this tree set: 7.200000
+Average relative RF distance in this tree set: 0.150000
+Number of unique topologies in this tree set: 2
+
+Pairwise RF distances saved to: /Users/julia/Desktop/Promotion/DifficultyPrediction/LabelGenerator/tests/data/logs/test.raxml.mlTrees.raxml.rfDistances
+
+Execution log saved to: /Users/julia/Desktop/Promotion/DifficultyPrediction/LabelGenerator/tests/data/logs/test.raxml.mlTrees.raxml.log
+
+Analysis started: 24-Feb-2025 14:16:18 / finished: 24-Feb-2025 14:16:18
+
+Elapsed time: 0.005 seconds
+

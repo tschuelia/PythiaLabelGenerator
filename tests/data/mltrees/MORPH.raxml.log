@@ -1,0 +1,145 @@
+
+RAxML-NG v. 1.2.2 released on 30.04.2024 by The Exelixis Lab.
+Developed by: Alexey M. Kozlov and Alexandros Stamatakis.
+Contributors: Diego Darriba, Tomas Flouri, Benoit Morel, Sarah Lutteropp, Ben Bettisworth, Julia Haag, Anastasis Togkousidis.
+Latest version: https://github.com/amkozlov/raxml-ng
+Questions/problems/suggestions? Please visit: https://groups.google.com/forum/#!forum/raxml
+
+System: Apple M1 Pro, 8 cores, 16 GB RAM
+
+RAxML-NG was called at 24-Feb-2025 12:48:22 as follows:
+
+/Users/julia/Software/raxml-ng_v1/raxml-ng --msa tests/data/MORPH.phy --model MULTI3_GTR --prefix tests/data/mltrees/MORPH --seed 42
+
+Analysis options:
+  run mode: ML tree search
+  start tree(s): random (10) + parsimony (10)
+  random seed: 42
+  tip-inner: OFF
+  pattern compression: ON
+  per-rate scalers: OFF
+  site repeats: ON
+  logLH epsilon: general: 10.000000, brlen-triplet: 1000.000000
+  fast spr radius: AUTO
+  spr subtree cutoff: 1.000000
+  fast CLV updates: ON
+  branch lengths: proportional (ML estimate, algorithm: NR-FAST)
+  SIMD kernels: SSE3
+  parallelization: coarse-grained (auto), PTHREADS (auto)
+
+[00:00:00] Reading alignment from file: tests/data/MORPH.phy
+[00:00:00] Loaded alignment with 5 taxa and 8 sites
+
+WARNING: Sequences Stipiturus_malachurus and Stipiturus_westernensis are exactly identical!
+WARNING: Duplicate sequences found: 1
+
+NOTE: Reduced alignment (with duplicates and gap-only sites/taxa removed) 
+NOTE: was saved to: /Users/julia/Desktop/Promotion/DifficultyPrediction/LabelGenerator/tests/data/mltrees/MORPH.raxml.reduced.phy
+
+Alignment comprises 1 partitions and 5 patterns
+
+Partition 0: noname
+Model: MULTI3_GTR+FO
+Alignment sites / patterns: 8 / 5
+Gaps: 0.00 %
+Invariant sites: 0.00 %
+
+
+NOTE: Binary MSA file created: tests/data/mltrees/MORPH.raxml.rba
+
+Parallelization scheme autoconfig: 8 worker(s) x 1 thread(s)
+
+[00:00:00] Generating 10 random starting tree(s) with 5 taxa
+[00:00:00] Generating 10 parsimony starting tree(s) with 5 taxa
+Parallel parsimony with 8 threads
+Parallel reduction/worker buffer size: 1 KB  / 0 KB
+
+[00:00:00] Data distribution: max. partitions/sites/weight per thread: 1 / 5 / 15
+[00:00:00] Data distribution: max. searches per worker: 3
+
+Starting ML tree search with 20 distinct starting trees
+
+[00:00:00 -64.277089] Initial branch length optimization
+[00:00:00 -38.862902] Model parameter optimization (eps = 10.000000)
+[00:00:00 -35.376306] AUTODETECT spr round 1 (radius: 5)
+[00:00:00 -35.376306] SPR radius for FAST iterations: 5 (autodetect)
+[00:00:00 -35.376306] Model parameter optimization (eps = 3.000000)
+[00:00:00 -35.136763] FAST spr round 1 (radius: 5)
+[00:00:00 -28.571827] Model parameter optimization (eps = 1.000000)
+[00:00:00 -27.253476] SLOW spr round 1 (radius: 5)
+[00:00:00 -27.225875] Model parameter optimization (eps = 0.100000)
+[00:00:00] [worker #2] ML tree search #3, logLikelihood: -27.209515
+[00:00:00] [worker #5] ML tree search #6, logLikelihood: -27.183297
+[00:00:00] [worker #7] ML tree search #8, logLikelihood: -27.187414
+
+[00:00:00] [worker #0] ML tree search #1, logLikelihood: -27.195318
+
+[00:00:00] [worker #1] ML tree search #2, logLikelihood: -27.180863
+[00:00:00] [worker #4] ML tree search #5, logLikelihood: -27.176706
+[00:00:00] [worker #6] ML tree search #7, logLikelihood: -27.195318
+[00:00:00] [worker #3] ML tree search #4, logLikelihood: -27.197084
+[00:00:00 -62.020069] Initial branch length optimization
+[00:00:00 -38.862902] Model parameter optimization (eps = 10.000000)
+[00:00:00 -35.080206] AUTODETECT spr round 1 (radius: 5)
+[00:00:00 -28.751672] SPR radius for FAST iterations: 5 (autodetect)
+[00:00:00 -28.751672] Model parameter optimization (eps = 3.000000)
+[00:00:00] [worker #7] ML tree search #16, logLikelihood: -27.177320
+[00:00:00] [worker #6] ML tree search #15, logLikelihood: -27.176340
+[00:00:00 -27.385558] FAST spr round 1 (radius: 5)
+[00:00:00] [worker #1] ML tree search #10, logLikelihood: -27.197084
+[00:00:00 -27.377889] Model parameter optimization (eps = 1.000000)
+[00:00:00] [worker #2] ML tree search #11, logLikelihood: -27.177221
+[00:00:00 -27.228301] SLOW spr round 1 (radius: 5)
+[00:00:00] [worker #5] ML tree search #14, logLikelihood: -27.177221
+[00:00:00] [worker #4] ML tree search #13, logLikelihood: -27.176977
+[00:00:00 -27.215994] Model parameter optimization (eps = 0.100000)
+[00:00:00] [worker #3] ML tree search #12, logLikelihood: -27.177320
+
+[00:00:00] [worker #0] ML tree search #9, logLikelihood: -27.183297
+
+[00:00:00 -51.266229] Initial branch length optimization
+[00:00:00 -30.074020] Model parameter optimization (eps = 10.000000)
+[00:00:00 -27.492272] AUTODETECT spr round 1 (radius: 5)
+[00:00:00 -27.492272] SPR radius for FAST iterations: 5 (autodetect)
+[00:00:00 -27.492272] Model parameter optimization (eps = 3.000000)
+[00:00:00] [worker #2] ML tree search #19, logLikelihood: -27.176706
+[00:00:00 -27.241441] FAST spr round 1 (radius: 5)
+[00:00:00 -27.241441] Model parameter optimization (eps = 1.000000)
+[00:00:00] [worker #1] ML tree search #18, logLikelihood: -27.188240
+[00:00:00 -27.189944] SLOW spr round 1 (radius: 5)
+[00:00:00] [worker #3] ML tree search #20, logLikelihood: -27.197185
+[00:00:00 -27.189944] Model parameter optimization (eps = 0.100000)
+
+[00:00:00] [worker #0] ML tree search #17, logLikelihood: -27.176912
+
+
+Optimized model parameters:
+
+   Partition 0: noname
+   Rate heterogeneity: NONE
+   Base frequencies (ML): 0.502398 0.330138 0.167464 
+   Substitution rates (ML): 0.097926 0.001000 1.000000 
+
+
+Final LogLikelihood: -27.176340
+
+AIC score: 76.352681 / AICc score: 340.352681 / BIC score: 77.226537
+Free parameters (model + branch lengths): 11
+
+WARNING: Number of free parameters (K=11) is larger than alignment size (n=8).
+         This might lead to overfitting and compromise tree inference results!
+
+
+WARNING: Best ML tree contains 1 near-zero branches!
+
+Best ML tree with collapsed near-zero branches saved to: /Users/julia/Desktop/Promotion/DifficultyPrediction/LabelGenerator/tests/data/mltrees/MORPH.raxml.bestTreeCollapsed
+Best ML tree saved to: /Users/julia/Desktop/Promotion/DifficultyPrediction/LabelGenerator/tests/data/mltrees/MORPH.raxml.bestTree
+All ML trees saved to: /Users/julia/Desktop/Promotion/DifficultyPrediction/LabelGenerator/tests/data/mltrees/MORPH.raxml.mlTrees
+Optimized model saved to: /Users/julia/Desktop/Promotion/DifficultyPrediction/LabelGenerator/tests/data/mltrees/MORPH.raxml.bestModel
+
+Execution log saved to: /Users/julia/Desktop/Promotion/DifficultyPrediction/LabelGenerator/tests/data/mltrees/MORPH.raxml.log
+
+Analysis started: 24-Feb-2025 12:48:22 / finished: 24-Feb-2025 12:48:22
+
+Elapsed time: 0.040 seconds
+

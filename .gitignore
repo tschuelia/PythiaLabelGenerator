@@ -1,3 +1,7 @@
+**/*.reduced.*
+**/*.log
+**/*.csv
+
 *.raxml.*
 !tests/**/*.raxml.*
 
@@ -5,9 +9,7 @@
 !tests/**/*.iqtree.log
 !tests/**/*.iqtree.iqtree
 
-**/*.reduced.*
-**/*.log
-**/*.csv
+*.reduced.phy
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

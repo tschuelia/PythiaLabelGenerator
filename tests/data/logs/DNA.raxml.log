@@ -1,0 +1,178 @@
+
+RAxML-NG v. 1.1.0-dev released on 20.12.2022 by The Exelixis Lab.
+Developed by: Alexey M. Kozlov and Alexandros Stamatakis.
+Contributors: Diego Darriba, Tomas Flouri, Benoit Morel, Sarah Lutteropp, Ben Bettisworth.
+Latest version: https://github.com/amkozlov/raxml-ng
+Questions/problems/suggestions? Please visit: https://groups.google.com/forum/#!forum/raxml
+
+System: Apple M1 Pro, 8 cores, 16 GB RAM
+
+RAxML-NG was called at 25-Feb-2025 08:50:44 as follows:
+
+/Users/julia/Software/raxml-ng/bin/raxml-ng --msa /Users/julia/Desktop/Promotion/DifficultyPrediction/LabelGenerator/tests/data/DNA.phy --model GTR+G --seed 42 --prefix /Users/julia/Desktop/Promotion/DifficultyPrediction/LabelGenerator/tests/data/logs/DNA --tree pars{2},rand{2} --threads 4
+
+Analysis options:
+  run mode: ML tree search
+  start tree(s): random (2) + parsimony (2)
+  random seed: 42
+  tip-inner: OFF
+  pattern compression: ON
+  per-rate scalers: OFF
+  site repeats: ON
+  fast spr radius: AUTO
+  spr subtree cutoff: 1.000000
+  lh-epsilon during autodetect spr rounds: 0.100000
+  lh-epsilon during fast spr rounds: 0.100000
+  lh-epsilon during slow spr rounds: 0.100000
+  lh-epsilon for full brlen opt: 0.100000
+  lh-epsilon for triplet brlen opt: 0.100000
+  branch lengths: proportional (ML estimate, algorithm: NR-FAST)
+  SIMD kernels: SSE3
+  parallelization: coarse-grained (auto), PTHREADS (4 threads), thread pinning: OFF
+
+[00:00:00] Reading alignment from file: /Users/julia/Desktop/Promotion/DifficultyPrediction/LabelGenerator/tests/data/DNA.phy
+[00:00:00] Loaded alignment with 79 taxa and 501 sites
+
+WARNING: Sequences Colletotrichum_acutatum_67_JN121188 and Colletotrichum_acutatum_IMI117620_FJ788417 are exactly identical!
+WARNING: Sequences Colletotrichum_acutatum_67_JN121188 and Colletotrichum_acutatum_UWS103_JN121184 are exactly identical!
+WARNING: Sequences Colletotrichum_acutatum_67_JN121188 and Colletotrichum_acutatum_UWS14_JN121183 are exactly identical!
+WARNING: Sequences Colletotrichum_acutatum_67_JN121188 and Colletotrichum_acutatum_UWS147_JN121185 are exactly identical!
+WARNING: Sequences Colletotrichum_acutatum_67_JN121188 and Colletotrichum_acutatum_UWS149_JN121186 are exactly identical!
+WARNING: Sequences Colletotrichum_acutatum_67_JN121188 and Colletotrichum_acutatum_UWS166_JN121187 are exactly identical!
+WARNING: Sequences Colletotrichum_acutatum_A1_CA546_AJ749674 and Colletotrichum_acutatum_A1_IMI350308_AJ300561 are exactly identical!
+WARNING: Sequences Colletotrichum_clavatum_64_JN121168 and Colletotrichum_clavatum_8689_JN121182 are exactly identical!
+WARNING: Sequences Colletotrichum_clavatum_64_JN121168 and Colletotrichum_clavatum_AZJ_JN121181 are exactly identical!
+WARNING: Sequences Colletotrichum_clavatum_64_JN121168 and Colletotrichum_clavatum_CAMP30_JN121149 are exactly identical!
+WARNING: Sequences Colletotrichum_clavatum_64_JN121168 and Colletotrichum_clavatum_CAMP36_JN121142 are exactly identical!
+WARNING: Sequences Colletotrichum_clavatum_64_JN121168 and Colletotrichum_clavatum_CGMUL_JN121179 are exactly identical!
+WARNING: Sequences Colletotrichum_clavatum_64_JN121168 and Colletotrichum_clavatum_CIRRI_JN121164 are exactly identical!
+WARNING: Sequences Colletotrichum_clavatum_64_JN121168 and Colletotrichum_clavatum_IMI398854_JN121126 are exactly identical!
+WARNING: Sequences Colletotrichum_clavatum_64_JN121168 and Colletotrichum_clavatum_IMI398855_JN121147 are exactly identical!
+WARNING: Sequences Colletotrichum_clavatum_64_JN121168 and Colletotrichum_clavatum_ITRANA1_JN121132 are exactly identical!
+WARNING: Sequences Colletotrichum_clavatum_64_JN121168 and Colletotrichum_clavatum_MELA_JN121180 are exactly identical!
+WARNING: Sequences Colletotrichum_clavatum_64_JN121168 and Colletotrichum_clavatum_OL11_JN121130 are exactly identical!
+WARNING: Sequences Colletotrichum_clavatum_64_JN121168 and Colletotrichum_clavatum_OL14_JN121139 are exactly identical!
+WARNING: Sequences Colletotrichum_clavatum_64_JN121168 and Colletotrichum_clavatum_OL17_JN121155 are exactly identical!
+WARNING: Sequences Colletotrichum_clavatum_64_JN121168 and Colletotrichum_clavatum_OL21_JN121156 are exactly identical!
+WARNING: Sequences Colletotrichum_clavatum_64_JN121168 and Colletotrichum_clavatum_OL5_JN121128 are exactly identical!
+WARNING: Sequences Colletotrichum_clavatum_64_JN121168 and Colletotrichum_clavatum_OLF21_JN121159 are exactly identical!
+WARNING: Sequences Colletotrichum_clavatum_64_JN121168 and Colletotrichum_clavatum_OLF22_JN121160 are exactly identical!
+WARNING: Sequences Colletotrichum_clavatum_64_JN121168 and Colletotrichum_clavatum_OLF40_JN121161 are exactly identical!
+WARNING: Sequences Colletotrichum_clavatum_64_JN121168 and Colletotrichum_clavatum_OLF48_JN121162 are exactly identical!
+WARNING: Sequences Colletotrichum_clavatum_64_JN121168 and Colletotrichum_clavatum_OLF97E_JN121163 are exactly identical!
+WARNING: Sequences Colletotrichum_clavatum_64_JN121168 and Colletotrichum_clavatum_OLP10_JN121135 are exactly identical!
+WARNING: Sequences Colletotrichum_clavatum_64_JN121168 and Colletotrichum_clavatum_OLP11_JN121136 are exactly identical!
+WARNING: Sequences Colletotrichum_clavatum_64_JN121168 and Colletotrichum_clavatum_OLP12_JN121137 are exactly identical!
+WARNING: Sequences Colletotrichum_clavatum_64_JN121168 and Colletotrichum_clavatum_OLP13_JN121138 are exactly identical!
+WARNING: Sequences Colletotrichum_clavatum_64_JN121168 and Colletotrichum_clavatum_OLP14_JN121139 are exactly identical!
+WARNING: Sequences Colletotrichum_clavatum_64_JN121168 and Colletotrichum_clavatum_OLP2_JN121133 are exactly identical!
+WARNING: Sequences Colletotrichum_clavatum_64_JN121168 and Colletotrichum_clavatum_OLP8_JN121134 are exactly identical!
+WARNING: Sequences Colletotrichum_clavatum_64_JN121168 and Colletotrichum_clavatum_ORA1_JN121174 are exactly identical!
+WARNING: Sequences Colletotrichum_clavatum_64_JN121168 and Colletotrichum_clavatum_UMB1B_JN121177 are exactly identical!
+WARNING: Sequences Colletotrichum_clavatum_CBS19332_AJ749688 and Colletotrichum_clavatum_PT169_AJ749685 are exactly identical!
+WARNING: Sequences Colletotrichum_fioriniae_1409_JN121192 and Colletotrichum_fioriniae_1491_JN121193 are exactly identical!
+WARNING: Sequences Colletotrichum_fioriniae_1409_JN121192 and Colletotrichum_fioriniae_EHS58_EF464594 are exactly identical!
+WARNING: Sequences Colletotrichum_fioriniae_1409_JN121192 and Colletotrichum_fioriniae_OLPUGLIA_JN121190 are exactly identical!
+WARNING: Sequences Colletotrichum_fioriniae_1409_JN121192 and Colletotrichum_fioriniae_STEU5287_AY376509 are exactly identical!
+WARNING: Sequences Colletotrichum_gloeosporioides_1765_JN121210 and Colletotrichum_gloeosporioides_8_JN121209 are exactly identical!
+WARNING: Sequences Colletotrichum_gloeosporioides_1765_JN121210 and Colletotrichum_gloeosporioides_C2_JN121211 are exactly identical!
+WARNING: Sequences Colletotrichum_gloeosporioides_1765_JN121210 and Colletotrichum_gloeosporioides_IMI356878_EU371022 are exactly identical!
+WARNING: Sequences Colletotrichum_musae_B15_DQ453986 and Colletotrichum_musae_MUSAE_JN121212 are exactly identical!
+WARNING: Sequences Colletotrichum_simmondsii_1036_JN121208 and Colletotrichum_simmondsii_UWS68_JN121199 are exactly identical!
+WARNING: Sequences Colletotrichum_simmondsii_1567_JN121203 and Colletotrichum_simmondsii_1568_JN121204 are exactly identical!
+WARNING: Sequences Colletotrichum_simmondsii_1567_JN121203 and Colletotrichum_simmondsii_1568B_JN121205 are exactly identical!
+WARNING: Sequences Colletotrichum_simmondsii_1567_JN121203 and Colletotrichum_simmondsii_1570_JN121207 are exactly identical!
+WARNING: Sequences Colletotrichum_simmondsii_1567_JN121203 and Colletotrichum_simmondsii_1572_JN121206 are exactly identical!
+WARNING: Sequences Colletotrichum_simmondsii_1567_JN121203 and Colletotrichum_simmondsii_725_JN121194 are exactly identical!
+WARNING: Sequences Colletotrichum_simmondsii_1567_JN121203 and Colletotrichum_simmondsii_CBS23149_JN121201 are exactly identical!
+WARNING: Sequences Colletotrichum_simmondsii_1567_JN121203 and Colletotrichum_simmondsii_FRA_JN121197 are exactly identical!
+WARNING: Sequences Colletotrichum_simmondsii_1567_JN121203 and Colletotrichum_simmondsii_SPL100_JN121195 are exactly identical!
+WARNING: Sequences Colletotrichum_simmondsii_1567_JN121203 and Colletotrichum_simmondsii_STEU4452_AY376503 are exactly identical!
+WARNING: Sequences Colletotrichum_simmondsii_BRIP28519_GU183331 and Colletotrichum_simmondsii_UWS137_JN121200 are exactly identical!
+WARNING: Duplicate sequences found: 56
+
+NOTE: Reduced alignment (with duplicates and gap-only sites/taxa removed) 
+NOTE: was saved to: /Users/julia/Desktop/Promotion/DifficultyPrediction/LabelGenerator/tests/data/logs/DNA.raxml.reduced.phy
+
+Alignment comprises 1 partitions and 112 patterns
+
+Partition 0: noname
+Model: GTR+FO+G4m
+Alignment sites / patterns: 501 / 112
+Gaps: 2.76 %
+Invariant sites: 32.14 %
+
+
+NOTE: Binary MSA file created: /Users/julia/Desktop/Promotion/DifficultyPrediction/LabelGenerator/tests/data/logs/DNA.raxml.rba
+
+Parallelization scheme autoconfig: 4 worker(s) x 1 thread(s)
+
+[00:00:00] Generating 2 random starting tree(s) with 79 taxa
+[00:00:00] Generating 2 parsimony starting tree(s) with 79 taxa
+Parallel parsimony with 4 threads
+Parsimony score: 491
+Parallel reduction/worker buffer size: 1 KB  / 0 KB
+
+[00:00:00] Data distribution: max. partitions/sites/weight per thread: 1 / 112 / 1792
+[00:00:00] Data distribution: max. searches per worker: 1
+
+Starting ML tree search with 4 distinct starting trees
+
+[00:00:00 -6705.882375] Initial branch length optimization
+[00:00:00 -4081.760325] Model parameter optimization (eps = 10.000000)
+[00:00:00 -3564.087113] AUTODETECT spr round 1 (radius: 5)
+[00:00:00 -2325.018269] AUTODETECT eps = 0.100000
+[00:00:00 -2325.018269] AUTODETECT spr round 2 (radius: 10)
+[00:00:00 -1970.270166] AUTODETECT eps = 0.100000
+[00:00:00 -1970.270166] AUTODETECT spr round 3 (radius: 15)
+[00:00:00 -1963.042971] AUTODETECT eps = 0.100000
+[00:00:00 -1963.042971] AUTODETECT spr round 4 (radius: 20)
+[00:00:00 -1963.040535] AUTODETECT eps = 0.100000
+[00:00:00 -1963.040535] SPR radius for FAST iterations: 15 (autodetect)
+[00:00:00 -1963.040535] Model parameter optimization (eps = 3.000000)
+[00:00:00 -1942.140004] FAST eps = 0.100000
+[00:00:00 -1942.140004] Full brlen eps = 0.100000
+[00:00:00 -1942.140004] FAST spr round 1 (radius: 15)
+[00:00:00 -1781.705710] FAST spr round 2 (radius: 15)
+[00:00:01 -1775.330787] FAST spr round 3 (radius: 15)
+[00:00:01 -1775.330573] Model parameter optimization (eps = 1.000000)
+[00:00:01 -1774.108676] SLOW eps = 0.100000
+[00:00:01 -1774.108676] SLOW spr round 1 (radius: 5)
+[00:00:01 -1774.108665] SLOW spr round 2 (radius: 10)
+[00:00:01] [worker #3] ML tree search #4, logLikelihood: -1774.697358
+[00:00:01 -1774.108665] SLOW spr round 3 (radius: 15)
+[00:00:02] [worker #2] ML tree search #3, logLikelihood: -1774.733881
+[00:00:02 -1774.108665] SLOW spr round 4 (radius: 20)
+[00:00:02 -1774.108665] SLOW spr round 5 (radius: 25)
+[00:00:02 -1774.108665] Model parameter optimization (eps = 0.100000)
+
+[00:00:02] [worker #0] ML tree search #1, logLikelihood: -1774.108662
+
+[00:00:02] [worker #1] ML tree search #2, logLikelihood: -1774.059018
+
+Optimized model parameters:
+
+   Partition 0: noname
+   Rate heterogeneity: GAMMA (4 cats, mean),  alpha: 0.314394 (ML),  weights&rates: (0.250000,0.006535) (0.250000,0.115729) (0.250000,0.619202) (0.250000,3.258534) 
+   Base frequencies (ML): 0.219599 0.287014 0.255246 0.238140 
+   Substitution rates (ML): 102.079773 221.318677 169.731341 105.572465 439.591627 1.000000 
+
+
+Final LogLikelihood: -1774.059018
+
+AIC score: 3876.118037 / AICc score: 4037.189465 / BIC score: 4567.641437
+Free parameters (model + branch lengths): 164
+
+WARNING: Best ML tree contains 60 near-zero branches!
+
+Best ML tree with collapsed near-zero branches saved to: /Users/julia/Desktop/Promotion/DifficultyPrediction/LabelGenerator/tests/data/logs/DNA.raxml.bestTreeCollapsed
+Best ML tree saved to: /Users/julia/Desktop/Promotion/DifficultyPrediction/LabelGenerator/tests/data/logs/DNA.raxml.bestTree
+All ML trees saved to: /Users/julia/Desktop/Promotion/DifficultyPrediction/LabelGenerator/tests/data/logs/DNA.raxml.mlTrees
+Optimized model saved to: /Users/julia/Desktop/Promotion/DifficultyPrediction/LabelGenerator/tests/data/logs/DNA.raxml.bestModel
+
+Execution log saved to: /Users/julia/Desktop/Promotion/DifficultyPrediction/LabelGenerator/tests/data/logs/DNA.raxml.log
+
+Analysis started: 25-Feb-2025 08:50:44 / finished: 25-Feb-2025 08:50:47
+
+Elapsed time: 2.941 seconds
+
