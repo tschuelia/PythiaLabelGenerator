@@ -35,8 +35,8 @@ jobs:
           echo "IQTREE_COMMAND = '${{ env.iqtree2 }}'" >> tests/test_config.py
           cat tests/test_config.py
         shell: bash -el {0}
-      - name: Setup tmate session
-        uses: mxschmitt/action-tmate@v3
+#      - name: Setup tmate session
+#        uses: mxschmitt/action-tmate@v3
       - name: Run LabelGenerator tests
         run: |
           PYTHONPATH=. pytest -svx
