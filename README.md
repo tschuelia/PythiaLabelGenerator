@@ -2,7 +2,7 @@
 
 > [!CAUTION]
 > 🚧 **Under Construction** 🚧
-> 
+>
 > This project is still in development and is not yet ready for use.
 
 The Pythia Difficulty Label Generator is a tool that generates the ground-truth phylogenetic difficulty label for an
@@ -11,7 +11,7 @@ MSA.
 > [!WARNING]
 > Computing the ground-truth difficulty for an MSA is very time-consuming and requires a lot of computational resources,
 > especially for MSAs with many sites and/or taxa.
-> 
+>
 > Please use our (very accurate) difficulty prediction tool [Pythia](https://github.com/tschuelia/PyPythia) instead
 > whenever possible.
 
@@ -47,16 +47,15 @@ of trees is changed.
 ## Prediction of Phylogenetic Difficulty
 
 As stated above, computing the ground-truth difficulty for an MSA is very time-consuming and requires a lot of
-computational resources, especially for MSAs with many sites and/or taxa. 
+computational resources, especially for MSAs with many sites and/or taxa.
 Please use our (very accurate) difficulty prediction tool [Pythia](https://github.com/tschuelia/PyPythia) instead
 whenever possible.
 For instance, inferring _a single ML tree_ for an MSA
 comprising [SARS-CoV-2 sequences](https://doi.org/10.1093/molbev/msaa314) (approx. 5k taxa and 28.5k sites) takes about
 12 hours on a large compute cluster. Using Pythia instead, we can predict the same MSA to be very difficult in about 2.5
-minutes on a standard MacBook. 
+minutes on a standard MacBook.
 
 Only use this tool if you need the ground-truth difficulty for a specific MSA and you are sure that Pythia is unable to
 predict the difficulty accurately.
 The only case where we observed Pythia to fail is for language MSAs, so if you are working with DNA, Protein, or
-biological morphological data, Pythia should work just fine 😉 
-
+biological morphological data, Pythia should work just fine 😉
