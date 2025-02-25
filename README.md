@@ -1,4 +1,5 @@
 # Pythia Difficulty Label Generator
+![Label Generator GH actions CI](https://github.com/tschuelia/PythiaLabelGenerator/actions/workflows/test-label-generator.yml/badge.svg)
 
 > [!CAUTION]
 > 🚧 **Under Construction** 🚧
