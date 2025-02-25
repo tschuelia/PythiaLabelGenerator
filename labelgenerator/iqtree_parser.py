@@ -140,24 +140,14 @@ def get_cleaned_table_entries(table_section: list[str]) -> list[dict]:
         m_single_tree = regex.match(table_entry_single_plausible_tree_re, line)
 
         if m:
-            # if a match for a full table entry was found: capture the results as stated in the table
-            tree_id, llh, deltaL, result_group = m.groups()
-            # to capture all test results individually we have to explicitly unpack it
-            raw_results = m.captures(4)
-
             # transform the raw results to a python dict
-            entry = _regex_group_to_test_results(raw_results)
-            entry["logL"] = float(llh)
-            entry["deltaL"] = float(deltaL)
+            entry = _regex_group_to_test_results(m.captures(4))
             entry["duplicate_topology"] = False
             entries.append(entry)
         elif m_single_tree:
             # if a match for a truncated table entry was found: we only have a single plausible tree
             # => add the entry manually
-            tree_id, llh, deltaL = m_single_tree.groups()
             entry = _get_default_entry()
-            entry["logL"] = float(llh)
-            entry["deltaL"] = float(deltaL)
             entries.append(entry)
         elif "= tree" in line:
             # indicates that a tree is identical to one seen before
