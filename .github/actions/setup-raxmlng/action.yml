@@ -15,3 +15,6 @@ runs:
         unzip raxml-ng_*.zip
         echo raxmlng=$(pwd)/raxml-ng >> $GITHUB_ENV
       shell: bash
+    - name: Check RAxML-NG installation
+      run: $raxmlng -v
+      shell: bash

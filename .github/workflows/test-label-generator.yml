@@ -37,7 +37,7 @@ jobs:
       - name: Run LabelGenerator tests
         run: |
           PYTHONPATH=. pytest
-        shell: micromamba-shell {0}
+        shell: bash -el {0}
 
   Install-using-conda:
     runs-on: ${{ matrix.os }}
