@@ -1,4 +1,4 @@
-name: label
+name: labelGenerator
 channels:
   - conda-forge
   - nodefaults
