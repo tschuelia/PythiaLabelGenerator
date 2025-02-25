@@ -15,5 +15,5 @@ runs:
         tar xvf iqtree-*.tar.gz
       shell: bash
     - name: Unzip RAxML-NG and set Env variable
-      run: echo iqtree2=$(pwd)/iqtree2 >> $GITHUB_ENV
+      run: echo iqtree2=$(pwd)/bin/iqtree2 >> $GITHUB_ENV
       shell: bash
