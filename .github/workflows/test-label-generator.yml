@@ -1,0 +1,68 @@
+name: Build and test LabelGenerator
+run-name: Build and run the tests of the LabelGenerator python library.
+on:
+  push:
+    paths-ignore:
+      - 'docs/**'
+jobs:
+  Run-Pythia-Tests:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest, macos-latest]
+        python-version: ["3.9", "3.12"]
+    steps:
+      - name: Setup Conda
+        uses: mamba-org/setup-micromamba@v2
+        with:
+          environment-file: etc/environment.yml
+          cache-environment: true
+          create-args:
+            python=${{ matrix.python-version }}
+          generate-run-shell: false
+          post-cleanup: none
+      - name: Check out repository code
+        uses: actions/checkout@v3
+      - name: Setup RAxML-NG and RAxML-NG env variable
+        uses: ./.github/actions/setup-raxmlng
+      - name: Setup IQ-TREE and IQ-TREE env variable
+        uses: ./.github/actions/setup-iqtree
+      - name: Install LabelGenerator and setup requirements
+        run: |
+          pip install -e .[test]
+          rm tests/test_config.py
+          echo "RAXMLNG_COMMAND = '${{ env.raxmlng }}'" > tests/test_config.py
+          echo "IQTREE_COMMAND = '${{ env.iqtree2 }}'" > tests/test_config.py
+          cat tests/test_config.py
+      - name: Run LabelGenerator tests
+        run: |
+          PYTHONPATH=. pytest
+
+  Install-using-conda:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest, macos-latest]
+        python-version: ["3.9", "3.12"]
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v3
+      - name: Setup Conda
+        uses: mamba-org/setup-micromamba@v2
+        with:
+          environment-file: etc/environment.yml
+          cache-environment: true
+          create-args:
+            python=${{ matrix.python-version }}
+          generate-run-shell: false
+          post-cleanup: none
+      - name: Install LabelGenerator  # Install LabelGenerator manually to get the correct branch
+        run: |
+          pip install -e .[test] --no-deps
+        shell: bash -el {0}
+      - name: Setup RAxML-NG and RAxML-NG env variable
+        uses: ./.github/actions/setup-raxmlng
+      - name: Setup IQ-TREE and IQ-TREE env variable
+        uses: ./.github/actions/setup-iqtree
+      - name: Test installation by running the CLI
+        uses: ./.github/actions/test-label-cli
