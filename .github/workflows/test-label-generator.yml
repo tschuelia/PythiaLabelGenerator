@@ -18,7 +18,7 @@ jobs:
         uses: mamba-org/setup-micromamba@v2
         with:
           environment-file: etc/environment.yml
-          cache-environment: false
+          cache-environment: true
           create-args:
             python=${{ matrix.python-version }}
           generate-run-shell: false
@@ -37,6 +37,7 @@ jobs:
       - name: Run LabelGenerator tests
         run: |
           PYTHONPATH=. pytest
+        shell: micromamba-shell {0}
 
   Install-using-conda:
     runs-on: ${{ matrix.os }}
@@ -51,14 +52,14 @@ jobs:
         uses: mamba-org/setup-micromamba@v2
         with:
           environment-file: etc/environment.yml
-          cache-environment: false
+          cache-environment: true
           create-args:
             python=${{ matrix.python-version }}
           generate-run-shell: false
           post-cleanup: none
       - name: Install LabelGenerator  # Install LabelGenerator manually to get the correct branch
         run: |
-          pip install -e .[test] --no-deps
+          pip install -e . --no-deps
         shell: bash -el {0}
       - name: Setup RAxML-NG and RAxML-NG env variable
         uses: ./.github/actions/setup-raxmlng
