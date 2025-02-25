@@ -4,14 +4,16 @@ runs:
   steps:
     - name: Download IQ-TREE MacOS
       if: runner.os == 'macOS'
-      run: wget https://github.com/iqtree/iqtree2/releases/download/v2.4.0/iqtree-2.4.0-macOS.zip
+      run: |
+        wget https://github.com/iqtree/iqtree2/releases/download/v2.4.0/iqtree-2.4.0-macOS.zip
+        unzip iqtree-*.zip
       shell: bash
     - name: Download IQ-TREE Linux
       if: runner.os == 'Linux'
-      run: wget https://github.com/iqtree/iqtree2/releases/download/v2.4.0/iqtree-2.4.0-Linux-intel.tar.gz
+      run: |
+        wget https://github.com/iqtree/iqtree2/releases/download/v2.4.0/iqtree-2.4.0-Linux-intel.tar.gz
+        unzip iqtree-*.tar.gz
       shell: bash
     - name: Unzip RAxML-NG and set Env variable
-      run: |
-        unzip iqtree-*.zip
-        echo iqtree2=$(pwd)/iqtree2 >> $GITHUB_ENV
+      run: echo iqtree2=$(pwd)/iqtree2 >> $GITHUB_ENV
       shell: bash
