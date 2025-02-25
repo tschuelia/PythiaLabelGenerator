@@ -26,7 +26,7 @@ def get_label(
         )
     if n_unique_plausible > n_plausible:
         raise ValueError(
-            "Number of unique trees cannot be higher than the number of plausible trees."
+            "Number of unique plausible trees cannot be higher than the number of plausible trees."
         )
     if n_plausible > n_all:
         raise ValueError(
@@ -91,11 +91,17 @@ def compute_label(
     # 2. RF-Distance ML trees
     ml_trees = pathlib.Path(f"{prefix}.raxml.mlTrees")
     rfdistance_prefix = pathlib.Path(f"{prefix}.rfdist")
+
     if log_info:
         log_runtime_information("Computing RF-Distance between ML trees.")
+
     n_unique_all, rf_all = rf_distance(
         ml_trees=ml_trees, prefix=rfdistance_prefix, raxmlng=raxmlng, redo=redo
     )
+
+    if log_info:
+        log_runtime_information(f"> RF-Distance ML trees: {round(rf_all, 2)}")
+        log_runtime_information(f"> Unique topologies ML trees: {n_unique_all}")
 
     # 3. IQ-TREE statistical tests
     best_tree = pathlib.Path(f"{prefix}.raxml.bestTree")
@@ -127,6 +133,9 @@ def compute_label(
 
     n_plausible_trees = sum(1 for _ in plausible_ml_trees.open())
 
+    if log_info:
+        log_runtime_information(f"> Found {n_plausible_trees} plausible trees.")
+
     # 5. RF-Distance plausible trees
     rfdistance_plausible_prefix = pathlib.Path(f"{prefix}.rfdist.plausible")
     if log_info:
@@ -137,6 +146,14 @@ def compute_label(
         raxmlng=raxmlng,
         redo=redo,
     )
+
+    if log_info:
+        log_runtime_information(
+            f"> RF-Distance plausible trees: {round(rf_plausible, 2)}"
+        )
+        log_runtime_information(
+            f"> Unique topologies plausible trees: {n_unique_plausible}"
+        )
 
     # 6. Compute the ground truth difficulty
     difficulty = get_label(

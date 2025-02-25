@@ -14,7 +14,6 @@ def test_get_iqtree_results_dna_msa(log_dir):
                 "p-AU": {"score": 0.787, "significant": True},
             },
             "plausible": False,
-            "duplicate_topology": False,
         },  # 1
         {
             "tests": {
@@ -27,7 +26,6 @@ def test_get_iqtree_results_dna_msa(log_dir):
                 "p-AU": {"score": 0.626, "significant": True},
             },
             "plausible": False,
-            "duplicate_topology": False,
         },  # 2
         {
             "tests": {
@@ -40,7 +38,6 @@ def test_get_iqtree_results_dna_msa(log_dir):
                 "p-AU": {"score": 0.17, "significant": True},
             },
             "plausible": True,
-            "duplicate_topology": False,
         },  # 3
         {
             "tests": {
@@ -53,7 +50,6 @@ def test_get_iqtree_results_dna_msa(log_dir):
                 "p-AU": {"score": 0.786, "significant": True},
             },
             "plausible": False,
-            "duplicate_topology": False,
         },  # 4
         {
             "tests": {
@@ -66,7 +62,6 @@ def test_get_iqtree_results_dna_msa(log_dir):
                 "p-AU": {"score": 0.788, "significant": True},
             },
             "plausible": False,
-            "duplicate_topology": False,
         },  # 5
         {
             "tests": {
@@ -79,7 +74,6 @@ def test_get_iqtree_results_dna_msa(log_dir):
                 "p-AU": {"score": 0.787, "significant": True},
             },
             "plausible": False,
-            "duplicate_topology": False,
         },  # 6
         {
             "tests": {
@@ -92,8 +86,7 @@ def test_get_iqtree_results_dna_msa(log_dir):
                 "p-AU": {"score": 0.783, "significant": True},
             },
             "plausible": True,
-            "duplicate_topology": False,
-        }, # 7
+        },  # 7
         {
             "tests": {
                 "bp-RELL": {"score": 0.036, "significant": True},
@@ -105,8 +98,7 @@ def test_get_iqtree_results_dna_msa(log_dir):
                 "p-AU": {"score": 0.787, "significant": True},
             },
             "plausible": False,
-            "duplicate_topology": False,
-        }, # 8
+        },  # 8
         {
             "tests": {
                 "bp-RELL": {"score": 0.0309, "significant": True},
@@ -118,8 +110,7 @@ def test_get_iqtree_results_dna_msa(log_dir):
                 "p-AU": {"score": 0.553, "significant": True},
             },
             "plausible": True,
-            "duplicate_topology": False,
-        },      # 9
+        },  # 9
         {
             "tests": {
                 "bp-RELL": {"score": 0.0582, "significant": True},
@@ -131,8 +122,7 @@ def test_get_iqtree_results_dna_msa(log_dir):
                 "p-AU": {"score": 0.558, "significant": True},
             },
             "plausible": True,
-            "duplicate_topology": False,
-        },    # 10
+        },  # 10
         {
             "tests": {
                 "bp-RELL": {"score": 0.027, "significant": True},
@@ -144,7 +134,6 @@ def test_get_iqtree_results_dna_msa(log_dir):
                 "p-AU": {"score": 0.629, "significant": True},
             },
             "plausible": True,
-            "duplicate_topology": False,
         },  # 11
         {
             "tests": {
@@ -157,7 +146,6 @@ def test_get_iqtree_results_dna_msa(log_dir):
                 "p-AU": {"score": 0.557, "significant": True},
             },
             "plausible": True,
-            "duplicate_topology": False,
         },  # 12
         {
             "tests": {
@@ -170,7 +158,6 @@ def test_get_iqtree_results_dna_msa(log_dir):
                 "p-AU": {"score": 0.438, "significant": True},
             },
             "plausible": True,
-            "duplicate_topology": False,
         },  # 13
         {
             "tests": {
@@ -183,7 +170,6 @@ def test_get_iqtree_results_dna_msa(log_dir):
                 "p-AU": {"score": 0.56, "significant": True},
             },
             "plausible": True,
-            "duplicate_topology": False,
         },  # 14
         {
             "tests": {
@@ -196,7 +182,6 @@ def test_get_iqtree_results_dna_msa(log_dir):
                 "p-AU": {"score": 0.626, "significant": True},
             },
             "plausible": True,
-            "duplicate_topology": False,
         },  # 15
         {
             "tests": {
@@ -209,7 +194,6 @@ def test_get_iqtree_results_dna_msa(log_dir):
                 "p-AU": {"score": 0.0201, "significant": False},
             },
             "plausible": False,
-            "duplicate_topology": False,
         },  # 16
         {
             "tests": {
@@ -222,7 +206,6 @@ def test_get_iqtree_results_dna_msa(log_dir):
                 "p-AU": {"score": 0.632, "significant": True},
             },
             "plausible": False,
-            "duplicate_topology": False,
         },  # 17
         {
             "tests": {
@@ -235,8 +218,7 @@ def test_get_iqtree_results_dna_msa(log_dir):
                 "p-AU": {"score": 0.628, "significant": True},
             },
             "plausible": False,
-            "duplicate_topology": False,
-        },      # 18
+        },  # 18
         {
             "tests": {
                 "bp-RELL": {"score": 0.0705, "significant": True},
@@ -248,7 +230,6 @@ def test_get_iqtree_results_dna_msa(log_dir):
                 "p-AU": {"score": 0.625, "significant": True},
             },
             "plausible": True,
-            "duplicate_topology": False,
         },  # 19
         {
             "tests": {
@@ -261,7 +242,6 @@ def test_get_iqtree_results_dna_msa(log_dir):
                 "p-AU": {"score": 0.787, "significant": True},
             },
             "plausible": True,
-            "duplicate_topology": False,
         },  # 20
     ]
 
@@ -282,14 +262,8 @@ def test_get_iqtree_results_aa_msa(log_dir):
                 "c-ELW": {"score": 1, "significant": True},
                 "p-AU": {"score": 1, "significant": True},
             },
-            "duplicate_topology": False,
         }
-    ]
-
-    # The other 19 trees are identical to the first tree, so we copy the result and only update duplicate_topology
-    duplicate_entry = expected_result[0].copy()
-    duplicate_entry["duplicate_topology"] = True
-    expected_result.extend([duplicate_entry] * 19)
+    ] * 20
 
     result = get_iqtree_results(log_dir / "AA.iqtree.iqtree")
     assert result == expected_result
@@ -307,10 +281,7 @@ def test_get_iqtree_results_morph_msa(log_dir):
             "c-ELW": {"score": 0.5, "significant": True},
             "p-AU": {"score": 0.84, "significant": True},
         },
-        "duplicate_topology": False,
     }
-    duplicate_tree_1 = entry_tree_1.copy()
-    duplicate_tree_1["duplicate_topology"] = True
 
     entry_tree_4 = {
         "plausible": 1,
@@ -323,32 +294,29 @@ def test_get_iqtree_results_morph_msa(log_dir):
             "c-ELW": {"score": 0.5, "significant": True},
             "p-AU": {"score": 0.16, "significant": True},
         },
-        "duplicate_topology": False,
     }
-    duplicate_tree_4 = entry_tree_4.copy()
-    duplicate_tree_4["duplicate_topology"] = True
 
     expected_result = [
         entry_tree_1,  # 1
-        duplicate_tree_1,  # 2
-        duplicate_tree_1,  # 3
+        entry_tree_1,  # 2
+        entry_tree_1,  # 3
         entry_tree_4,  # 4
-        duplicate_tree_4,  # 5
-        duplicate_tree_4,  # 6
-        duplicate_tree_1,  # 7
-        duplicate_tree_1,  # 8
-        duplicate_tree_4,  # 9
-        duplicate_tree_4,  # 10
-        duplicate_tree_4,  # 11
-        duplicate_tree_1,  # 12
-        duplicate_tree_1,  # 13
-        duplicate_tree_4,  # 14
-        duplicate_tree_4,  # 15
-        duplicate_tree_1,  # 16
-        duplicate_tree_4,  # 17
-        duplicate_tree_4,  # 18
-        duplicate_tree_4,  # 19
-        duplicate_tree_1,  # 20
+        entry_tree_4,  # 5
+        entry_tree_4,  # 6
+        entry_tree_1,  # 7
+        entry_tree_1,  # 8
+        entry_tree_4,  # 9
+        entry_tree_4,  # 10
+        entry_tree_4,  # 11
+        entry_tree_1,  # 12
+        entry_tree_1,  # 13
+        entry_tree_4,  # 14
+        entry_tree_4,  # 15
+        entry_tree_1,  # 16
+        entry_tree_4,  # 17
+        entry_tree_4,  # 18
+        entry_tree_4,  # 19
+        entry_tree_1,  # 20
     ]
 
     result = get_iqtree_results(log_dir / "MORPH.iqtree.iqtree")

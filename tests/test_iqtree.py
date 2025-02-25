@@ -135,8 +135,8 @@ def test_run_statstests_fails_with_CalledProcessError(ml_tree_dir, iqtree_comman
     "data_type, plausible_tree_indices",
     [
         (DataType.DNA, [2, 6, 8, 9, 10, 11, 12, 13, 14, 18, 19]),
-        (DataType.AA, [0]),
-        (DataType.MORPH, [0, 3]),
+        (DataType.AA, list(range(20))),
+        (DataType.MORPH, list(range(20))),
     ],
 )
 def test_filter_plausible_trees_filters_correct_trees(

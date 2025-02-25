@@ -169,6 +169,22 @@ def test_rf_distance(raxmlng_command, done_raxml_inference_prefix):
         assert 0.15 == pytest.approx(rfdist, 0.0)
 
 
+def test_rf_distance_single_tree(raxmlng_command):
+    with tempfile.TemporaryDirectory() as tmpdir:
+        tmpdir = pathlib.Path(tmpdir)
+        prefix = tmpdir / "test"
+
+        ml_trees = tmpdir / "single_tree.newick"
+        ml_trees.write_text("((A,B),C);")
+
+        num_topos, rfdist = rf_distance(ml_trees, prefix, raxmlng_command)
+
+        assert not _rfdist_results_exists_and_correct(prefix, 1)
+
+        assert num_topos == 1
+        assert rfdist == 0.0
+
+
 def test_rf_distance_existing_results(
     raxmlng_command, done_raxml_inference_prefix, done_raxml_rfdist_prefix
 ):
@@ -185,3 +201,16 @@ def test_rf_distance_existing_results(
         )
         assert num_topos == 2
         assert 0.15 == pytest.approx(rfdist, 0.0)
+
+
+def test_rf_distance_existing_fails_for_zero_trees(
+    raxmlng_command
+):
+    with pytest.raises(ValueError, match="At least 1 tree is required."):
+        # n_trees passed explicitly
+        rf_distance(pathlib.Path("nonexisting"), pathlib.Path("nonexisting"), raxmlng_command, n_trees=0, redo=False)
+
+    with pytest.raises(ValueError, match="At least 1 tree is required."):
+        # n_trees not set, but no trees in file
+        with tempfile.NamedTemporaryFile(mode="w") as tmpfile:
+            rf_distance(pathlib.Path(tmpfile.name), pathlib.Path("nonexisting"), raxmlng_command, redo=False)

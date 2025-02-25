@@ -151,8 +151,14 @@ def rf_distance(
         tuple[int, float]: The number of unique topologies and the average relative RF distance.
 
     """
-    if not n_trees:
+    if n_trees is None:
         n_trees = sum(1 for _ in ml_trees.open())
+
+    if n_trees == 0:
+        raise ValueError("At least 1 tree is required.")
+
+    if n_trees == 1:
+        return 1, 0.0
 
     if not redo and _rfdist_results_exists_and_correct(prefix, n_trees):
         num_topos, rel_rfdist, _ = get_raxmlng_rfdist_results(
