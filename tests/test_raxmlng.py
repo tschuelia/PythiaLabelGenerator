@@ -54,8 +54,7 @@ def test_infer_ml_trees(raxmlng_command, dna_msa, n_trees):
             model,
             prefix,
             n_trees,
-            42,
-            threads=4,
+            seed=42,
             redo=True,
         )
         assert _inference_results_exist_and_correct(prefix, n_trees)
