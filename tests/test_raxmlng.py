@@ -194,7 +194,6 @@ def test_rf_distance_existing_results(
 
     with tempfile.TemporaryDirectory() as tmpdir:
         tmpdir = pathlib.Path(tmpdir)
-        prefix = tmpdir / "test"
         num_topos, rfdist = rf_distance(
             ml_trees, done_raxml_rfdist_prefix, raxmlng_command, n_trees=6, redo=False
         )
@@ -202,14 +201,23 @@ def test_rf_distance_existing_results(
         assert 0.15 == pytest.approx(rfdist, 0.0)
 
 
-def test_rf_distance_existing_fails_for_zero_trees(
-    raxmlng_command
-):
+def test_rf_distance_existing_fails_for_zero_trees(raxmlng_command):
     with pytest.raises(ValueError, match="At least 1 tree is required."):
         # n_trees passed explicitly
-        rf_distance(pathlib.Path("nonexisting"), pathlib.Path("nonexisting"), raxmlng_command, n_trees=0, redo=False)
+        rf_distance(
+            pathlib.Path("nonexisting"),
+            pathlib.Path("nonexisting"),
+            raxmlng_command,
+            n_trees=0,
+            redo=False,
+        )
 
     with pytest.raises(ValueError, match="At least 1 tree is required."):
         # n_trees not set, but no trees in file
         with tempfile.NamedTemporaryFile(mode="w") as tmpfile:
-            rf_distance(pathlib.Path(tmpfile.name), pathlib.Path("nonexisting"), raxmlng_command, redo=False)
+            rf_distance(
+                pathlib.Path(tmpfile.name),
+                pathlib.Path("nonexisting"),
+                raxmlng_command,
+                redo=False,
+            )

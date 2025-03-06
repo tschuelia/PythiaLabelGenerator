@@ -91,9 +91,9 @@ Starting ML tree search with 2 distinct starting trees
 Optimized model parameters:
 
    Partition 0: noname
-   Rate heterogeneity: GAMMA (4 cats, mean),  alpha: 0.143196 (ML),  weights&rates: (0.250000,0.000034) (0.250000,0.008653) (0.250000,0.221217) (0.250000,3.770095) 
-   Base frequencies (ML): 0.218335 0.267606 0.283192 0.230868 
-   Substitution rates (ML): 0.658079 1.067771 0.646314 1.782260 3.248573 1.000000 
+   Rate heterogeneity: GAMMA (4 cats, mean),  alpha: 0.143196 (ML),  weights&rates: (0.250000,0.000034) (0.250000,0.008653) (0.250000,0.221217) (0.250000,3.770095)
+   Base frequencies (ML): 0.218335 0.267606 0.283192 0.230868
+   Substitution rates (ML): 0.658079 1.067771 0.646314 1.782260 3.248573 1.000000
 
 
 Final LogLikelihood: -6480.457652
@@ -110,4 +110,3 @@ Execution log saved to: /Users/julia/Desktop/Promotion/DifficultyPrediction/Labe
 Analysis started: 18-Feb-2025 12:09:33 / finished: 18-Feb-2025 12:09:39
 
 Elapsed time: 6.082 seconds
-

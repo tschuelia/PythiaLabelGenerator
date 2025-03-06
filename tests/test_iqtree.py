@@ -2,7 +2,6 @@ import datetime
 import pathlib
 import re
 import tempfile
-import time
 
 import pytest
 from pypythia.custom_types import DataType

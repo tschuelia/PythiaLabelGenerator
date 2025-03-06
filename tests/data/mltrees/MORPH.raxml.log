@@ -33,7 +33,7 @@ Analysis options:
 WARNING: Sequences Stipiturus_malachurus and Stipiturus_westernensis are exactly identical!
 WARNING: Duplicate sequences found: 1
 
-NOTE: Reduced alignment (with duplicates and gap-only sites/taxa removed) 
+NOTE: Reduced alignment (with duplicates and gap-only sites/taxa removed)
 NOTE: was saved to: /Users/julia/Desktop/Promotion/DifficultyPrediction/LabelGenerator/tests/data/mltrees/MORPH.raxml.reduced.phy
 
 Alignment comprises 1 partitions and 5 patterns
@@ -117,8 +117,8 @@ Optimized model parameters:
 
    Partition 0: noname
    Rate heterogeneity: NONE
-   Base frequencies (ML): 0.502398 0.330138 0.167464 
-   Substitution rates (ML): 0.097926 0.001000 1.000000 
+   Base frequencies (ML): 0.502398 0.330138 0.167464
+   Substitution rates (ML): 0.097926 0.001000 1.000000
 
 
 Final LogLikelihood: -27.176340
@@ -142,4 +142,3 @@ Execution log saved to: /Users/julia/Desktop/Promotion/DifficultyPrediction/Labe
 Analysis started: 24-Feb-2025 12:48:22 / finished: 24-Feb-2025 12:48:22
 
 Elapsed time: 0.040 seconds
-

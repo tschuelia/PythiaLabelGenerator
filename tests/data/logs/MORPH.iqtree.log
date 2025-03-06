@@ -76,7 +76,7 @@ TreeID	AU	RSS	d	c
 Time for AU test: 0.014 seconds
 Time for evaluating all trees: 0.018 sec.
 
-Analysis results written to: 
+Analysis results written to:
   IQ-TREE report:                /tmp/MORPH.iqtree.iqtree
   Maximum-likelihood tree:       /tmp/MORPH.iqtree.treefile
   Evaluated user trees:          /tmp/MORPH.iqtree.trees

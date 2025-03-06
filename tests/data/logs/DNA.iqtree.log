@@ -238,7 +238,7 @@ TreeID	AU	RSS	d	c
 Time for AU test: 0.209 seconds
 Time for evaluating all trees: 0.325 sec.
 
-Analysis results written to: 
+Analysis results written to:
   IQ-TREE report:                /Users/julia/Desktop/Promotion/DifficultyPrediction/LabelGenerator/tests/data/logs/DNA.iqtree.iqtree
   Maximum-likelihood tree:       /Users/julia/Desktop/Promotion/DifficultyPrediction/LabelGenerator/tests/data/logs/DNA.iqtree.treefile
   Evaluated user trees:          /Users/julia/Desktop/Promotion/DifficultyPrediction/LabelGenerator/tests/data/logs/DNA.iqtree.trees

@@ -79,7 +79,7 @@ Tree 19 / identical to tree 1
 Tree 20 / identical to tree 1
 Time for evaluating all trees: 0.013 sec.
 
-Analysis results written to: 
+Analysis results written to:
   IQ-TREE report:                /tmp/AA.iqtree.iqtree
   Maximum-likelihood tree:       /tmp/AA.iqtree.treefile
   Evaluated user trees:          /tmp/AA.iqtree.trees

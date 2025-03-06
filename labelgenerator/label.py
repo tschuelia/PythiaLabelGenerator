@@ -51,9 +51,9 @@ def get_label(
     label = total / 5
 
     eps = 1e-9
-    assert (
-        -eps <= label <= 1 + eps
-    ), f"Label {label} is not between 0 and 1. Check the input values."
+    assert -eps <= label <= 1 + eps, (
+        f"Label {label} is not between 0 and 1. Check the input values."
+    )
 
     return label
 
