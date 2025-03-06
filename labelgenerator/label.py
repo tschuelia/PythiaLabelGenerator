@@ -1,7 +1,7 @@
 import pathlib
 from typing import Optional
 
-from pypythia.msa import parse
+from pypythia.msa import parse_msa
 
 from labelgenerator.iqtree import (
     filter_plausible_trees,
@@ -70,7 +70,7 @@ def compute_label(
     redo: bool = False,
     log_info: bool = True,
 ):
-    msa_obj = parse(msa_file)
+    msa_obj = parse_msa(msa_file)
     model = model or msa_obj.get_raxmlng_model()
 
     # 1. Infer 100 ML trees for the given MSA using RAxML-NG

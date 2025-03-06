@@ -6,7 +6,7 @@ import tempfile
 
 import pytest
 from pypythia.custom_types import DataType
-from pypythia.msa import parse
+from pypythia.msa import parse_msa
 
 from labelgenerator.raxmlng import (
     _inference_results_exist_and_correct,
@@ -79,7 +79,7 @@ def test_infer_ml_trees(raxmlng_command, dna_msa, n_trees):
 @pytest.mark.parametrize("data_type", [DataType.DNA, DataType.AA, DataType.MORPH])
 def test_infer_ml_trees_for_dtypes(raxmlng_command, data_dir, data_type):
     msa = data_dir / f"{data_type.name}.phy"
-    model = parse(msa).get_raxmlng_model()
+    model = parse_msa(msa).get_raxmlng_model()
 
     with tempfile.TemporaryDirectory() as tmpdir:
         tmpdir = pathlib.Path(tmpdir)
@@ -106,7 +106,7 @@ def test_infer_ml_trees_existing_files(
     test_start = datetime.datetime.now()
 
     msa = data_dir / f"{data_type.name}.phy"
-    model = parse(msa).get_raxmlng_model()
+    model = parse_msa(msa).get_raxmlng_model()
     prefix = ml_tree_dir / f"{data_type.name}"
     n_trees = 20
 

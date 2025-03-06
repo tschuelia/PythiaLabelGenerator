@@ -4,6 +4,7 @@ import shutil
 import sys
 import time
 
+from labelgenerator import __version__
 from labelgenerator.label import compute_label
 from labelgenerator.logger import (
     SCRIPT_START,
@@ -99,6 +100,14 @@ def _parse_cli():
         "--redo",
         action="store_true",
         help="Redo all computations, even if the results already exist.",
+    )
+
+    parser.add_argument(
+        "-V",
+        "--version",
+        action="version",
+        version=__version__,
+        help="Print the version number and exit.",
     )
 
     return parser.parse_args()

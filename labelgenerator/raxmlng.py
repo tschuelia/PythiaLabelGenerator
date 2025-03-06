@@ -161,12 +161,12 @@ def rf_distance(
         return 1, 0.0
 
     if not redo and _rfdist_results_exists_and_correct(prefix, n_trees):
-        num_topos, rel_rfdist, _ = get_raxmlng_rfdist_results(
+        num_topos, rel_rfdist = get_raxmlng_rfdist_results(
             pathlib.Path(f"{prefix}.raxml.log")
         )
     else:
         raxmlng = RAxMLNG(raxmlng)
-        num_topos, rel_rfdist, _ = raxmlng.get_rfdistance_results(
+        num_topos, rel_rfdist = raxmlng.get_rfdistance_results(
             ml_trees, prefix, **{"redo": None} if redo else {}
         )
 
