@@ -6,4 +6,4 @@ dependencies:
   - regex
   - loguru
   - pytest
-  - pypythia >=2.0.0
+  - pythiaphylopredictor >=2.0.0
