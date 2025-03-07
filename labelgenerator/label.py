@@ -20,6 +20,47 @@ def get_label(
     rf_plausible: float,
     n_unique_plausible: int,
 ) -> float:
+    r"""
+    Compute the ground truth difficulty label for the given input values.
+
+    The ground-truth difficulty is computed according to our definition published in [Haag _et al._ (2022)](https://doi.org/10.1093/molbev/msac254):
+
+    Let $N_{\text{all}}$ be the number of inferred ML trees.
+    We first compute the average pairwise relative Robinson-Foulds (RF) distance between all trees ($RF_{\text{all}}$), as
+    well as the number of unique tree topologies among the inferred trees ($N^*_{\text{all}}$).
+    We filter the inferred trees using likelihood-based statistical tests to obtain the set of $N_{\text{pl}}$ _plausible
+    trees_.
+    We again compute the average pairwise RF distance between the plausible trees ($RF_{\text{pl}}$) and the number of
+    unique tree topologies among the plausible trees ($N^*_{\text{pl}}$).
+
+    The difficulty is then computed as follows:
+
+    $$
+    \text{difficulty} = \frac{1}{5} \cdot \bigg[ RF_{\text{all}} + RF_{\text{pl}}
+    + \frac{N^*_{\text{all}}}{N_{\text{all}}} + \frac{N^*_{\text{pl}}}{N_{\text{pl}}}
+    + \left( 1 - \frac{N_{\text{pl}}}{N_{\text{all}}} \right) \bigg]
+    $$
+
+    Args:
+        n_all (int): Number of inferred ML trees.
+        rf_all (float): Average pairwise RF distance between all trees.
+        n_unique_all (int): Number of unique tree topologies among the inferred trees.
+        n_plausible (int): Number of plausible trees.
+        rf_plausible (float): Average pairwise RF distance between the plausible trees.
+        n_unique_plausible (int): Number of unique tree topologies among the plausible trees.
+
+    Returns:
+        float: Ground truth difficulty label.
+
+    Raises:
+        ValueError: If the input values are not within the expected range.
+            - Number of unique trees is higher than the total number of trees.
+            - Number of unique plausible trees is higher than the number of plausible trees.
+            - Number of plausible trees is higher than the total number of trees.
+            - RF distance for all trees is not between 0 and 1.
+            - RF distance for plausible trees is not between 0 and 1.
+
+    """
     if n_unique_all > n_all:
         raise ValueError(
             "Number of unique trees cannot be higher than the total number of trees."
@@ -69,7 +110,30 @@ def compute_label(
     threads: Optional[int] = None,
     redo: bool = False,
     log_info: bool = True,
-):
+) -> float:
+    """
+    Compute the ground truth difficulty label for the given input MSA by inferring ML trees and running statistical tests.
+    See `labelgenerator.label.get_label` for the definition of the ground truth difficulty.
+
+
+    Args:
+        msa_file (pathlib.Path): Path to the MSA file to compute the label for. Can be either in FASTA or PHYLIP format.
+        raxmlng (pathlib.Path): Path to the RAxML-NG executable.
+        iqtree (pathlib.Path): Path to the IQ-TREE executable.
+        prefix (pathlib.Path): Prefix for the output files.
+        model (str, optional): Substitution model to use for the ML tree inference. Defaults to None. In this case, the
+            model is inferred from the MSA based on the data type (`GTR+G` for DNA, `LG+G` for AA, and `MULTIx_GTR` for morphological data).
+        n_trees (int, optional): Number of ML trees to infer. Defaults to 100. Please note that the computed label is only comparable to
+            Pythia predictions if 100 trees are inferred.
+        seed (int, optional): Seed for the random number generator. Defaults to 0.
+        threads (int, optional): Number of threads to use for the ML tree inference. Defaults to None. In this case, the RAxML-NG and IQ-TREE autoconfigs are used.
+        redo (bool, optional): If True, the computations are redone even if the output files already exist. Defaults to False.
+        log_info (bool, optional): If True, runtime information is logged. Defaults to True.
+
+    Returns:
+        float: The ground truth difficulty label for the given MSA.
+
+    """
     msa_obj = parse_msa(msa_file)
     model = model or msa_obj.get_raxmlng_model()
 

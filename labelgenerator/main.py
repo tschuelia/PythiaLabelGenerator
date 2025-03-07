@@ -60,7 +60,7 @@ def _parse_cli():
         "--threads",
         type=int,
         required=False,
-        help="Number of threads to use for the RAxML-NG tree inference and IQ-TREE statistical tests (default: all available).",
+        help="Number of threads to use for the RAxML-NG tree inference and IQ-TREE statistical tests (default: autoconfig in RAxML-NG and IQ-TREE).",
     )
 
     parser.add_argument(
