@@ -1,7 +1,7 @@
 import pathlib
 from typing import Optional
 
-from pypythia.msa import parse_msa
+from pypythia.msa import parse_msa, DataType
 
 from labelgenerator.iqtree import (
     filter_plausible_trees,
@@ -182,6 +182,7 @@ def compute_label(
         seed=seed,
         threads=threads,
         redo=redo,
+        is_morph=msa_obj.data_type == DataType.MORPH,
     )
 
     # 4. Filter the plausible trees
