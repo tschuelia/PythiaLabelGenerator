@@ -15,7 +15,7 @@ logger.add(sys.stderr, format="{message}")
 
 def get_header():
     return textwrap.dedent(
-        f"Difficulty LabelGenerator version {__version__} released by The Exelixis Lab\n"
+        f"PyDLG version {__version__} released by The Exelixis Lab\n"
         f"Developed by: Julia Haag\n"
         f"Latest version: https://github.com/tschuelia/LabelGenerator\n"
         f"Questions/problems/suggestions? Please open an issue on GitHub.\n",

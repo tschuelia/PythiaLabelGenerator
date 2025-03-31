@@ -1,8 +1,8 @@
-# Pythia Difficulty Label Generator
+# Pythia Difficulty Label Generator (PyDLG)
 
 ![Label Generator GH actions CI](https://github.com/tschuelia/PythiaLabelGenerator/actions/workflows/test-label-generator.yml/badge.svg)
 
-The Pythia Difficulty Label Generator generates the ground-truth phylogenetic difficulty label for an MSA and
+PyDLG generates the ground-truth phylogenetic difficulty label for an MSA and
 corresponds to the prediction target of our difficulty prediction tool [Pythia](https://github.com/tschuelia/PyPythia).
 
 > [!CAUTION]
@@ -50,7 +50,7 @@ comprising [SARS-CoV-2 sequences](https://doi.org/10.1093/molbev/msaa314) (appro
 12 hours on a large compute cluster. Using Pythia instead, we can predict the same MSA to be very difficult in about 2.5
 minutes on a standard MacBook.
 
-Only use this tool if you need the ground-truth difficulty for a specific MSA and you are sure that Pythia is unable to
+Only use PyDLG if you need the ground-truth difficulty for a specific MSA and you are sure that Pythia is unable to
 predict the difficulty accurately.
 The only case where we observed Pythia to fail is for language MSAs, so if you are working with DNA, Protein, or
 biological morphological data, Pythia should work just fine 😉
@@ -59,7 +59,7 @@ biological morphological data, Pythia should work just fine 😉
 
 #### Requirements
 
-To use this labelling tool, you need to install
+To use PyDLG, you need to install
 
 - RAxML-NG: See [the RAxML-NG GitHub repository](https://github.com/amkozlov/raxml-ng) for installation instructions.
   Please make sure that you install a RAxML-NG version < 2.
@@ -68,7 +68,11 @@ To use this labelling tool, you need to install
 
 #### Install via conda (recommended)
 
-This package will soon be available on conda-forge :)
+You can install the package using conda:
+
+```bash
+conda install pythialabelgenerator -c conda-forge
+```
 
 #### Install using pip
 
@@ -80,7 +84,7 @@ pip install pythialabelgenerator
 
 ## Usage
 
-This label-generator is primarily a command line tool. You can call it using the `label` command, for instance, to
+PyDLG is primarily a command line tool. You can call it using the `label` command, for instance, to
 compute the difficulty for the example MSA provided in the `examples` directory run
 
 ```bash
@@ -92,7 +96,7 @@ to the console.
 The output will look something like this:
 
 ```text
-Difficulty LabelGenerator version 1.0.0 released by The Exelixis Lab
+PyDLG version 1.0.1 released by The Exelixis Lab
 Developed by: Julia Haag
 Latest version: https://github.com/tschuelia/LabelGenerator
 Questions/problems/suggestions? Please open an issue on GitHub.
@@ -127,7 +131,7 @@ Note that this `examply.phy` MSA is not the same exemplary MSA as we provide in 
 For a full list of command line options, run `label -h`:
 
 ```text
-Difficulty LabelGenerator version 1.0.0 released by The Exelixis Lab
+PyDLG version 1.0.1 released by The Exelixis Lab
 Developed by: Julia Haag
 Latest version: https://github.com/tschuelia/LabelGenerator
 Questions/problems/suggestions? Please open an issue on GitHub.
@@ -163,7 +167,7 @@ difficulties, as the difficulty is based on the average pairwise RF distance bet
 
 ### Result Files
 
-Running this labelling tool will result in the following files:
+Running PyDLG will result in the following files:
 
 - `{prefix}.raxml.*`: RAxML-NG log and result files.
 - `{prefix}.iqtree.*`: IQ-TREE log and result files.
@@ -174,8 +178,7 @@ You can set the prefix of these files using the `-p` option. By default, the pre
 Note that RAxML-NG and IQ-TREE refuse to overwrite existing files. If you want to redo the computations, you can use the
 `--redo` option.
 Please also specify the `--redo` option if you want to change the number of trees to infer using the `--ntrees` option
-for the same prefix. Otherwise,
-the label generator will exit with an error message.
+for the same prefix. Otherwise, PyDLG will exit with an error message.
 
 ### Input Data
 
@@ -189,7 +192,6 @@ you can do so using the `--model` option.
 
 
 ## Citation
-We will soon publish a pre-print on bioRxiv with updates on our Pythia difficulty prediction tool that will also include a
-brief description of this new labelling tool. Please cite this pre-print if you use this tool in your research.
+Please cite the following preprint if you use this tool in your research.
 
-The link to the paper will be added soon 🙂
+Haag, J. & Stamatakis, A. (2025). **Pythia 2.0: New Data, New Prediction Model, New Features.** *BioRxiv*. [https://doi.org/10.1101/2025.03.25.645182](https://doi.org/10.1101/2025.03.25.645182)
