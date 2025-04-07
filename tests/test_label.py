@@ -6,6 +6,7 @@ import pytest
 from labelgenerator.label import get_label, compute_label
 from labelgenerator.logger import logger
 from pypythia.custom_types import DataType
+from pypythia.msa import parse_msa
 
 
 def test_get_label_fails_for_invalid_input():
@@ -99,6 +100,7 @@ def test_compute_label(
         prefix = pathlib.Path(tmpdir) / "test"
 
         label = compute_label(
+            msa_obj=parse_msa(msa_file),
             msa_file=msa_file,
             raxmlng=raxmlng_command,
             iqtree=iqtree_command,
@@ -123,6 +125,7 @@ def test_compute_label_with_logging(raxmlng_command, iqtree_command, data_dir):
         logger.add(logfile, format="{message}")
 
         label = compute_label(
+            msa_obj=parse_msa(msa_file),
             msa_file=msa_file,
             raxmlng=raxmlng_command,
             iqtree=iqtree_command,

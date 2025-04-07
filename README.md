@@ -173,6 +173,7 @@ Running PyDLG will result in the following files:
 - `{prefix}.iqtree.*`: IQ-TREE log and result files.
 - `{prefix}.labelGen.log`: Log file containing the output of the label generator. This is the same output as printed to
   the terminal.
+- `{prefix}.csv`: The computed ground-truth difficulty and all features required for Pythia for the given MSA.
 
 You can set the prefix of these files using the `-p` option. By default, the prefix is the name of the MSA file.
 Note that RAxML-NG and IQ-TREE refuse to overwrite existing files. If you want to redo the computations, you can use the

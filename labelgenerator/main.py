@@ -3,15 +3,20 @@ import pathlib
 import shutil
 import sys
 import time
+from typing import Optional
 
 from labelgenerator import __version__
 from labelgenerator.label import compute_label
 from labelgenerator.logger import (
     SCRIPT_START,
     get_header,
+    log_runtime,
     log_runtime_information,
     logger,
 )
+from pypythia.msa import parse_msa
+from pypythia.prediction import collect_features
+from pypythia.raxmlng import RAxMLNG
 
 DEFAULT_RAXMLNG_EXE = (
     pathlib.Path(shutil.which("raxml-ng")) if shutil.which("raxml-ng") else None
@@ -22,7 +27,7 @@ DEFAULT_IQTREE_EXE = (
 )
 
 
-def _parse_cli():
+def _parse_cli(arg_list: Optional[list[str]] = None):
     parser = argparse.ArgumentParser(
         description="Generate the ground truth difficulty for the given MSA."
     )
@@ -110,29 +115,49 @@ def _parse_cli():
         help="Print the version number and exit.",
     )
 
-    return parser.parse_args()
+    return parser.parse_args(arg_list)
 
 
-def main():
+def main(arg_list: Optional[list[str]] = None):
     logger.info(get_header())
-    args = _parse_cli()
+    args = _parse_cli(arg_list)
 
     msa_file = pathlib.Path(args.msa)
     prefix = pathlib.Path(args.prefix) if args.prefix else msa_file
 
     log_file = pathlib.Path(f"{prefix}.labelGen.log")
+    features_file = pathlib.Path(f"{prefix}.csv")
+
+    # If the log file and the features file already exist, remove them if the --redo flag is set
+    if args.redo:
+        log_file.unlink(missing_ok=True)
+        features_file.unlink(missing_ok=True)
+
     logger.add(log_file, format="{message}")
     log_file.write_text(get_header() + "\n")
 
     logger.info(
-        f"LabelGenerator was called at {time.strftime('%d-%b-%Y %H:%M:%S')} as follows:\n"
+        f"PyDLG was called at {time.strftime('%d-%b-%Y %H:%M:%S')} as follows:\n"
     )
     logger.info(" ".join(sys.argv))
     logger.info("")
 
     log_runtime_information("Starting label computation.")
 
+    msa_obj = parse_msa(msa_file)
+
+    if msa_obj.contains_duplicate_sequences():
+        logger.info(
+            "WARNING: The input MSA contains duplicate sequences. Consider deduplicating the MSA before running the label generator."
+        )
+
+    if msa_obj.contains_full_gap_sequences():
+        logger.info(
+            "WARNING: The input MSA contains sequences that are only gaps. Consider removing these sequences before running the label generator."
+        )
+
     difficulty = compute_label(
+        msa_obj=msa_obj,
         msa_file=msa_file,
         raxmlng=pathlib.Path(args.raxmlng),
         iqtree=pathlib.Path(args.iqtree),
@@ -145,6 +170,22 @@ def main():
         log_info=True,
     )
 
+    label_end = time.perf_counter()
+
+    log_runtime_information("Computing corresponding Pythia features.")
+
+    features = collect_features(
+        msa=msa_obj,
+        msa_file=msa_file,
+        raxmlng=RAxMLNG(pathlib.Path(args.raxmlng)),
+        log_info=False,
+        threads=args.threads,
+        seed=args.seed,
+    )
+
+    features["difficulty"] = difficulty
+    features.to_csv(features_file, index=False)
+
     script_end = time.perf_counter()
 
     logger.info("")
@@ -156,20 +197,8 @@ def main():
         )
 
     logger.info("")
-    total_runtime = script_end - SCRIPT_START
-    hours, remainder = divmod(total_runtime, 3600)
-    minutes, seconds = divmod(remainder, 60)
-
-    if hours > 0:
-        logger.info(
-            f"Total runtime: {int(hours):02d}:{int(minutes):02d}:{seconds:02d} hours ({round(total_runtime)} seconds)."
-        )
-    elif minutes > 0:
-        logger.info(
-            f"Total runtime: {int(minutes):02d}:{int(seconds):02d} minutes ({round(total_runtime)} seconds)."
-        )
-    else:
-        logger.info(f"Total runtime: {seconds:.2f} seconds.")
+    log_runtime(label_end - SCRIPT_START, "Label computation runtime")
+    log_runtime(script_end - SCRIPT_START, "Total runtime")
 
 
 if __name__ == "__main__":

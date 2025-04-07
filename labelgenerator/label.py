@@ -1,7 +1,7 @@
 import pathlib
 from typing import Optional
 
-from pypythia.msa import parse_msa, DataType
+from pypythia.msa import DataType, MSA
 
 from labelgenerator.iqtree import (
     filter_plausible_trees,
@@ -92,14 +92,15 @@ def get_label(
     label = total / 5
 
     eps = 1e-9
-    assert -eps <= label <= 1 + eps, (
-        f"Label {label} is not between 0 and 1. Check the input values."
-    )
+    assert (
+        -eps <= label <= 1 + eps
+    ), f"Label {label} is not between 0 and 1. Check the input values."
 
     return label
 
 
 def compute_label(
+    msa_obj: MSA,
     msa_file: pathlib.Path,
     raxmlng: pathlib.Path,
     iqtree: pathlib.Path,
@@ -117,6 +118,7 @@ def compute_label(
 
 
     Args:
+        msa_obj (MSA): MSA object containing the input data.
         msa_file (pathlib.Path): Path to the MSA file to compute the label for. Can be either in FASTA or PHYLIP format.
         raxmlng (pathlib.Path): Path to the RAxML-NG executable.
         iqtree (pathlib.Path): Path to the IQ-TREE executable.
@@ -134,7 +136,6 @@ def compute_label(
         float: The ground truth difficulty label for the given MSA.
 
     """
-    msa_obj = parse_msa(msa_file)
     model = model or msa_obj.get_raxmlng_model()
 
     # 1. Infer 100 ML trees for the given MSA using RAxML-NG

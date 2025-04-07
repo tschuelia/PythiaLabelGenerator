@@ -30,3 +30,19 @@ def log_runtime_information(message, log_runtime=True):
     else:
         time_string = ""
     logger.info(f"{time_string}{message}")
+
+
+def log_runtime(total_runtime: int, runtime_name: str):
+    hours, remainder = divmod(total_runtime, 3600)
+    minutes, seconds = divmod(remainder, 60)
+
+    if hours > 0:
+        logger.info(
+            f"{runtime_name}: {int(hours):02d}:{int(minutes):02d}:{seconds:02d} hours ({round(total_runtime)} seconds)."
+        )
+    elif minutes > 0:
+        logger.info(
+            f"{runtime_name}: {int(minutes):02d}:{int(seconds):02d} minutes ({round(total_runtime)} seconds)."
+        )
+    else:
+        logger.info(f"{runtime_name}: {seconds:.2f} seconds.")
