@@ -106,7 +106,7 @@ def test_main(data_type, expected_label, data_dir, raxmlng_command, iqtree_comma
             "RF-Distance plausible trees:",
             "Unique topologies plausible trees:",
             "Computing corresponding Pythia features.",
-            f"Ground Truth Difficulty for {msa_file}: {expected_label:.3f}",
+            f"Ground Truth Difficulty for {msa_file}:",
             "WARNING: The number of inferred ML trees is less than 100. The computed label may be less reliable.",
             "Label computation runtime",
             "Total runtime",

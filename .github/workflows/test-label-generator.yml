@@ -39,7 +39,7 @@ jobs:
 #        uses: mxschmitt/action-tmate@v3
       - name: Run LabelGenerator tests
         run: |
-          PYTHONPATH=. pytest -svx
+          PYTHONPATH=. pytest -svx --color=yes
         shell: bash -el {0}
 
   Install-using-conda:
