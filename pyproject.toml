@@ -3,7 +3,7 @@ name = "PythiaLabelGenerator"
 description = "Command line tool to generate the ground-truth phylogenetic difficulty of MSAs"
 readme = {file = "README.md", content-type = "text/markdown"}
 authors = [{name = "Julia Haag", email = "info@juliaschmid.com"}]
-version = "1.0.0"
+version = "1.1.1"
 license = "GPL-3.0-or-later"
 classifiers = [
     "Programming Language :: Python :: 3.9",
