@@ -97,7 +97,9 @@ def infer_ml_trees(
         cmd.extend(["--threads", threads])
 
     if raxmlng_major_version >= 2:
-        cmd.extend(["--adaptive", "off"])
+        # Preserve the v1.2 search and fixed parsimony starting branch lengths.
+        # Disabling adaptive search alone leaves v2's new initialization enabled.
+        cmd.extend(["--adaptive", "off", "--extra", "brlen-start-fixed"])
 
     if redo:
         cmd.append("--redo")

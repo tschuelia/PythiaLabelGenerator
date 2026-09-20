@@ -3,7 +3,6 @@ import pathlib
 import shutil
 
 import pytest
-from pypythia.raxmlng import RAxMLNG
 
 
 def _command_path(environment_variable, executable):
@@ -20,11 +19,6 @@ def _command_path(environment_variable, executable):
 @pytest.fixture
 def raxmlng_command():
     return _command_path("RAXMLNG_COMMAND", "raxml-ng")
-
-
-@pytest.fixture
-def raxmlng_major_version(raxmlng_command):
-    return RAxMLNG(raxmlng_command)._major_version
 
 
 @pytest.fixture

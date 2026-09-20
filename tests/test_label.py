@@ -88,23 +88,20 @@ def test_get_label(values, expected):
 
 
 @pytest.mark.parametrize(
-    "data_type, expected_label_v1, expected_label_v2, tolerance",
+    "data_type, expected_label, tolerance",
     [
         # Native RAxML-NG builds can select different near-optimal DNA trees.
-        (DataType.DNA, 0.772, 0.772, 0.05),
-        (DataType.AA, 0.04, 0.04, 0.01),
-        # RAxML-NG 2's classic search produces a different deterministic result.
-        (DataType.MORPH, 0.173, 0.244, 0.01),
+        (DataType.DNA, 0.772, 0.05),
+        (DataType.AA, 0.04, 0.01),
+        (DataType.MORPH, 0.173, 0.01),
     ],
 )
 def test_compute_label(
     raxmlng_command,
-    raxmlng_major_version,
     iqtree_command,
     data_dir,
     data_type,
-    expected_label_v1,
-    expected_label_v2,
+    expected_label,
     tolerance,
 ):
     msa_file = data_dir / f"{data_type.name}.phy"
@@ -122,15 +119,10 @@ def test_compute_label(
             log_info=False,
             seed=42,
         )
-        expected_label = (
-            expected_label_v2 if raxmlng_major_version >= 2 else expected_label_v1
-        )
         assert label == pytest.approx(expected_label, abs=tolerance)
 
 
-def test_compute_label_with_logging(
-    raxmlng_command, raxmlng_major_version, iqtree_command, data_dir
-):
+def test_compute_label_with_logging(raxmlng_command, iqtree_command, data_dir):
     msa_file = data_dir / "MORPH.phy"
     n_trees = 10
 
@@ -152,27 +144,16 @@ def test_compute_label_with_logging(
             log_info=True,
             seed=42,
         )
-        expected_label = 0.244 if raxmlng_major_version >= 2 else 0.173
-        assert label == pytest.approx(expected_label, abs=0.01)
+        assert label == pytest.approx(0.173, abs=0.01)
 
         logfile_content = logfile.read_text()
 
         assert f"Inferring {n_trees} ML trees using RAxML-NG." in logfile_content
-        expected_lines = (
-            [
-                "RF-Distance ML trees: 0.32",
-                "Unique topologies ML trees: 3",
-                "Found 9 plausible trees.",
-                "RF-Distance plausible trees: 0.28",
-                "Unique topologies plausible trees: 2",
-            ]
-            if raxmlng_major_version >= 2
-            else [
-                "RF-Distance ML trees: 0.23",
-                "Unique topologies ML trees: 2",
-                "Found 10 plausible trees.",
-                "RF-Distance plausible trees: 0.23",
-                "Unique topologies plausible trees: 2",
-            ]
-        )
+        expected_lines = [
+            "RF-Distance ML trees: 0.23",
+            "Unique topologies ML trees: 2",
+            "Found 10 plausible trees.",
+            "RF-Distance plausible trees: 0.23",
+            "Unique topologies plausible trees: 2",
+        ]
         assert all(line in logfile_content for line in expected_lines)

@@ -39,6 +39,18 @@ Per default, the difficulty is based on $`N_{\text{all}}=100`$ ML trees.
 Note that this number can be adjusted by the user, however, the difficulty will only be an approximation if the number
 of trees is changed.
 
+## RAxML-NG 2 Compatibility
+
+When using RAxML-NG 2, PyDLG automatically passes the following flags to preserve the label-generation procedure
+used in our publications:
+
+- `--adaptive off` disables adaptive search and its early-stopping rule. This ensures that tree searches are not
+  cut short based on estimated difficulty and that label computation follows our published difficulty definition.
+- `--extra brlen-start-fixed` restores the initial branch-length behavior of RAxML-NG 1.2, so labels are computed
+  using the same initialization as in our publications.
+
+These flags are applied automatically; no additional `label` arguments are required.
+
 ## Prediction of Phylogenetic Difficulty
 
 As stated above, computing the ground-truth difficulty for an MSA is very time-consuming and requires a lot of

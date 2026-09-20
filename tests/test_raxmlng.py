@@ -68,20 +68,17 @@ def test_infer_ml_trees(raxmlng_command, dna_msa, n_trees):
         expected_random = (
             f"random ({n_rand_expected}) + " if n_rand_expected > 0 else ""
         )
-        expected_parsimony = rf"parsimony(?:\+BRLEN)? \({n_pars_expected}\)"
-        expected_log = (
-            rf"start tree\(s\): {re.escape(expected_random)}{expected_parsimony}"
-        )
+        expected_log = f"start tree(s): {expected_random}parsimony ({n_pars_expected})"
 
         log_file = prefix.with_suffix(".raxml.log")
-        assert re.search(expected_log, log_file.read_text())
+        assert expected_log in log_file.read_text()
 
 
 @pytest.mark.parametrize(
     ("major_version", "expected_adaptive_setting"),
     [(1, None), (2, "off"), (3, "off")],
 )
-def test_infer_ml_trees_sets_adaptive_by_raxmlng_version(
+def test_infer_ml_trees_preserves_v1_search_by_raxmlng_version(
     tmp_path, monkeypatch, major_version, expected_adaptive_setting
 ):
     class RAxMLNGStub:
@@ -103,10 +100,14 @@ def test_infer_ml_trees_sets_adaptive_by_raxmlng_version(
     command = commands[0]
     if expected_adaptive_setting is None:
         assert "--adaptive" not in command
+        assert "--extra" not in command
     else:
         adaptive_index = command.index("--adaptive")
         assert command[adaptive_index + 1] == expected_adaptive_setting
         assert command.count("--adaptive") == 1
+        extra_index = command.index("--extra")
+        assert command[extra_index + 1] == "brlen-start-fixed"
+        assert command.count("--extra") == 1
 
 
 @pytest.mark.parametrize("data_type", [DataType.DNA, DataType.AA, DataType.MORPH])
