@@ -7,6 +7,10 @@ on:
     branches:
       - main
   workflow_dispatch:
+  workflow_call:
+
+permissions:
+  contents: read
 
 jobs:
   pixi-tests:
@@ -58,3 +62,28 @@ jobs:
         run: pixi lock --check
       - name: Build and verify distributions
         run: pixi run --frozen package-smoke
+      - name: Check distribution filenames
+        run: |
+          pixi run --frozen --environment build python - <<'PY'
+          import pathlib
+          import tomllib
+
+          version = tomllib.loads(pathlib.Path("pyproject.toml").read_text())["project"]["version"]
+          expected = {
+              f"pythialabelgenerator-{version}-py3-none-any.whl",
+              f"pythialabelgenerator-{version}.tar.gz",
+          }
+          actual = {path.name for path in pathlib.Path("dist").iterdir()}
+          if actual != expected:
+              raise SystemExit(f"Expected distributions {sorted(expected)}, found {sorted(actual)}")
+          PY
+      - name: Upload tested distributions
+        if: matrix.os == 'ubuntu-latest'
+        uses: actions/upload-artifact@v7
+        with:
+          name: python-distributions
+          path: |
+            dist/*.whl
+            dist/*.tar.gz
+          if-no-files-found: error
+          overwrite: true
