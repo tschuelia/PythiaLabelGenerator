@@ -1,21 +1,35 @@
+import pathlib
 import tempfile
-import pytest
 
 import pandas as pd
-
-from labelgenerator.main import main
-from labelgenerator import __version__
-import pathlib
-
+import pytest
 from pypythia.custom_types import DataType
 from pypythia.msa import parse_msa
 
+from labelgenerator import __version__
+from labelgenerator.main import main
+
 
 @pytest.mark.parametrize(
-    "data_type, expected_label",
-    [(DataType.DNA, 0.772), (DataType.AA, 0.04), (DataType.MORPH, 0.173)],
+    "data_type, expected_label_v1, expected_label_v2, tolerance",
+    [
+        # Native RAxML-NG builds can select different near-optimal DNA trees.
+        (DataType.DNA, 0.772, 0.772, 0.05),
+        (DataType.AA, 0.04, 0.04, 0.01),
+        # RAxML-NG 2's classic search produces a different deterministic result.
+        (DataType.MORPH, 0.173, 0.244, 0.01),
+    ],
 )
-def test_main(data_type, expected_label, data_dir, raxmlng_command, iqtree_command):
+def test_main(
+    data_type,
+    expected_label_v1,
+    expected_label_v2,
+    tolerance,
+    data_dir,
+    raxmlng_command,
+    raxmlng_major_version,
+    iqtree_command,
+):
     with tempfile.TemporaryDirectory() as tmpdir:
         # Create a temporary directory for the test
         prefix = pathlib.Path(tmpdir) / "test"
@@ -90,7 +104,10 @@ def test_main(data_type, expected_label, data_dir, raxmlng_command, iqtree_comma
 
         # Check if the label is correct
         label = features_content["difficulty"].values[0]
-        assert label == pytest.approx(expected_label, abs=0.01)
+        expected_label = (
+            expected_label_v2 if raxmlng_major_version >= 2 else expected_label_v1
+        )
+        assert label == pytest.approx(expected_label, abs=tolerance)
 
         # Check if the log file is correct and contains the expected output
         expected_lines = [

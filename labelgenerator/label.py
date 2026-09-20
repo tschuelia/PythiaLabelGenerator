@@ -1,7 +1,6 @@
 import pathlib
-from typing import Optional
 
-from pypythia.msa import DataType, MSA
+from pypythia.msa import MSA, DataType
 
 from labelgenerator.iqtree import (
     filter_plausible_trees,
@@ -92,9 +91,9 @@ def get_label(
     label = total / 5
 
     eps = 1e-9
-    assert (
-        -eps <= label <= 1 + eps
-    ), f"Label {label} is not between 0 and 1. Check the input values."
+    assert -eps <= label <= 1 + eps, (
+        f"Label {label} is not between 0 and 1. Check the input values."
+    )
 
     return label
 
@@ -105,10 +104,10 @@ def compute_label(
     raxmlng: pathlib.Path,
     iqtree: pathlib.Path,
     prefix: pathlib.Path,
-    model: Optional[str] = None,
+    model: str | None = None,
     n_trees: int = 100,
     seed: int = 0,
-    threads: Optional[int] = None,
+    threads: int | None = None,
     redo: bool = False,
     log_info: bool = True,
 ) -> float:

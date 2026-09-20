@@ -8,6 +8,7 @@ import pytest
 from pypythia.custom_types import DataType
 from pypythia.msa import parse_msa
 
+import labelgenerator.raxmlng as raxmlng_module
 from labelgenerator.raxmlng import (
     _inference_results_exist_and_correct,
     _rfdist_results_exists_and_correct,
@@ -67,13 +68,45 @@ def test_infer_ml_trees(raxmlng_command, dna_msa, n_trees):
         expected_random = (
             f"random ({n_rand_expected}) + " if n_rand_expected > 0 else ""
         )
-        expected_parsimony = (
-            f"parsimony ({n_pars_expected})" if n_pars_expected > 0 else ""
+        expected_parsimony = rf"parsimony(?:\+BRLEN)? \({n_pars_expected}\)"
+        expected_log = (
+            rf"start tree\(s\): {re.escape(expected_random)}{expected_parsimony}"
         )
-        expected_log = f"start tree(s): {expected_random}{expected_parsimony}"
 
         log_file = prefix.with_suffix(".raxml.log")
-        assert expected_log in log_file.read_text()
+        assert re.search(expected_log, log_file.read_text())
+
+
+@pytest.mark.parametrize(
+    ("major_version", "expected_adaptive_setting"),
+    [(1, None), (2, "off"), (3, "off")],
+)
+def test_infer_ml_trees_sets_adaptive_by_raxmlng_version(
+    tmp_path, monkeypatch, major_version, expected_adaptive_setting
+):
+    class RAxMLNGStub:
+        def __init__(self, _executable):
+            self._major_version = major_version
+
+    commands = []
+    monkeypatch.setattr(raxmlng_module, "RAxMLNG", RAxMLNGStub)
+    monkeypatch.setattr(raxmlng_module, "run_raxmlng_command", commands.append)
+
+    raxmlng_module.infer_ml_trees(
+        msa=tmp_path / "msa.phy",
+        raxmlng=tmp_path / "raxml-ng",
+        model="GTR+G",
+        prefix=tmp_path / "inference",
+        n_trees=2,
+    )
+
+    command = commands[0]
+    if expected_adaptive_setting is None:
+        assert "--adaptive" not in command
+    else:
+        adaptive_index = command.index("--adaptive")
+        assert command[adaptive_index + 1] == expected_adaptive_setting
+        assert command.count("--adaptive") == 1
 
 
 @pytest.mark.parametrize("data_type", [DataType.DNA, DataType.AA, DataType.MORPH])

@@ -3,7 +3,10 @@ import pathlib
 import shutil
 import sys
 import time
-from typing import Optional
+
+from pypythia.msa import parse_msa
+from pypythia.prediction import collect_features
+from pypythia.raxmlng import RAxMLNG
 
 from labelgenerator import __version__
 from labelgenerator.label import compute_label
@@ -14,9 +17,6 @@ from labelgenerator.logger import (
     log_runtime_information,
     logger,
 )
-from pypythia.msa import parse_msa
-from pypythia.prediction import collect_features
-from pypythia.raxmlng import RAxMLNG
 
 DEFAULT_RAXMLNG_EXE = (
     pathlib.Path(shutil.which("raxml-ng")) if shutil.which("raxml-ng") else None
@@ -27,7 +27,7 @@ DEFAULT_IQTREE_EXE = (
 )
 
 
-def _parse_cli(arg_list: Optional[list[str]] = None):
+def _parse_cli(arg_list: list[str] | None = None):
     parser = argparse.ArgumentParser(
         description="Generate the ground truth difficulty for the given MSA."
     )
@@ -118,7 +118,7 @@ def _parse_cli(arg_list: Optional[list[str]] = None):
     return parser.parse_args(arg_list)
 
 
-def main(arg_list: Optional[list[str]] = None):
+def main(arg_list: list[str] | None = None):
     logger.info(get_header())
     args = _parse_cli(arg_list)
 

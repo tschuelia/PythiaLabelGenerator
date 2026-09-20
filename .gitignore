@@ -2,6 +2,9 @@
 **/*.log
 **/*.csv
 
+# Pixi environments
+.pixi/
+
 *.raxml.*
 !tests/**/*.raxml.*
 

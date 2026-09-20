@@ -1,6 +1,5 @@
 import pathlib
 import subprocess
-from typing import Optional
 
 from pypythia.custom_types import DataType
 
@@ -49,7 +48,7 @@ def run_statstests(
     model: str,
     prefix: pathlib.Path,
     seed: int = 0,
-    threads: Optional[int] = None,
+    threads: int | None = None,
     is_morph: bool = False,
     redo: bool = False,
 ) -> None:

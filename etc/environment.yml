@@ -1,9 +1,0 @@
-name: labelGenerator
-channels:
-  - conda-forge
-  - nodefaults
-dependencies:
-  - regex
-  - loguru
-  - pytest
-  - pythiaphylopredictor >=2.0.0

@@ -1,6 +1,5 @@
 import math
 import pathlib
-from typing import Optional
 
 from pypythia.raxmlng import RAxMLNG, get_raxmlng_rfdist_results, run_raxmlng_command
 
@@ -38,7 +37,7 @@ def infer_ml_trees(
     prefix: pathlib.Path,
     n_trees: int = 100,
     seed: int = 0,
-    threads: Optional[int] = None,
+    threads: int | None = None,
     redo: bool = False,
 ) -> None:
     """
@@ -74,6 +73,8 @@ def infer_ml_trees(
     if not redo and _inference_results_exist_and_correct(prefix, n_trees):
         return
 
+    raxmlng_major_version = RAxMLNG(raxmlng)._major_version
+
     n_pars_trees = math.ceil(n_trees / 2)
     n_rand_trees = n_trees - n_pars_trees
     rand_string = f",rand{{{n_rand_trees}}}" if n_rand_trees > 0 else ""
@@ -94,6 +95,9 @@ def infer_ml_trees(
 
     if threads is not None:
         cmd.extend(["--threads", threads])
+
+    if raxmlng_major_version >= 2:
+        cmd.extend(["--adaptive", "off"])
 
     if redo:
         cmd.append("--redo")
@@ -130,7 +134,7 @@ def rf_distance(
     ml_trees: pathlib.Path,
     prefix: pathlib.Path,
     raxmlng: pathlib.Path,
-    n_trees: Optional[int] = None,
+    n_trees: int | None = None,
     redo: bool = False,
 ) -> tuple[int, float]:
     """
