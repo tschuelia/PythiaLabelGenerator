@@ -3,6 +3,7 @@ import textwrap
 import time
 
 import loguru
+
 from labelgenerator import __version__
 
 SCRIPT_START = time.perf_counter()
@@ -17,7 +18,7 @@ def get_header():
     return textwrap.dedent(
         f"PyDLG version {__version__} released by The Exelixis Lab\n"
         f"Developed by: Julia Haag\n"
-        f"Latest version: https://github.com/tschuelia/LabelGenerator\n"
+        f"Latest version: https://github.com/tschuelia/PythiaLabelGenerator\n"
         f"Questions/problems/suggestions? Please open an issue on GitHub.\n",
     )
 

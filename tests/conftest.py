@@ -1,18 +1,29 @@
+import os
 import pathlib
+import shutil
 
 import pytest
 
-from .test_config import IQTREE_COMMAND, RAXMLNG_COMMAND
+
+def _command_path(environment_variable, executable):
+    configured_command = os.environ.get(environment_variable)
+    command = configured_command or shutil.which(executable)
+    if command is None:
+        pytest.fail(
+            f"Could not find {executable!r}. Add it to PATH or set "
+            f"{environment_variable}."
+        )
+    return pathlib.Path(command)
 
 
 @pytest.fixture
 def raxmlng_command():
-    return pathlib.Path(RAXMLNG_COMMAND)
+    return _command_path("RAXMLNG_COMMAND", "raxml-ng")
 
 
 @pytest.fixture
 def iqtree_command():
-    return pathlib.Path(IQTREE_COMMAND)
+    return _command_path("IQTREE_COMMAND", "iqtree2")
 
 
 @pytest.fixture

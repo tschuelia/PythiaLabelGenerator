@@ -39,6 +39,18 @@ Per default, the difficulty is based on $`N_{\text{all}}=100`$ ML trees.
 Note that this number can be adjusted by the user, however, the difficulty will only be an approximation if the number
 of trees is changed.
 
+## RAxML-NG 2 Compatibility
+
+When using RAxML-NG 2, PyDLG automatically passes the following flags to preserve the label-generation procedure
+used in our publications:
+
+- `--adaptive off` disables adaptive search and its early-stopping rule. This ensures that tree searches are not
+  cut short based on estimated difficulty and that label computation follows our published difficulty definition.
+- `--extra brlen-start-fixed` restores the initial branch-length behavior of RAxML-NG 1.2, so labels are computed
+  using the same initialization as in our publications.
+
+These flags are applied automatically; no additional `label` arguments are required.
+
 ## Prediction of Phylogenetic Difficulty
 
 As stated above, computing the ground-truth difficulty for an MSA is very time-consuming and requires a lot of
@@ -62,7 +74,7 @@ biological morphological data, Pythia should work just fine 😉
 To use PyDLG, you need to install
 
 - RAxML-NG: See [the RAxML-NG GitHub repository](https://github.com/amkozlov/raxml-ng) for installation instructions.
-  Please make sure that you install a RAxML-NG version < 2.
+  PyDLG supports both RAxML-NG 1.x and 2.x.
 - IQ-TREE: See [the IQ-TREE website](http://www.iqtree.org) for installation instructions. Please install IQ-TREE
   version 2 or higher.
 
@@ -82,6 +94,38 @@ You can install the package using pip:
 pip install pythialabelgenerator
 ```
 
+This installs the Python package but not RAxML-NG or IQ-TREE. Install both programs separately as described in
+[Requirements](#requirements).
+
+#### Develop using Pixi
+
+Pixi is the supported way to create a development environment containing the Python package and both phylogenetic
+binaries:
+
+```bash
+git clone https://github.com/tschuelia/PythiaLabelGenerator.git
+cd PythiaLabelGenerator
+pixi install --frozen
+pixi run binary-smoke
+pixi run cli-smoke
+pixi run test
+```
+
+Unlike released-package installations, these project-local Pixi environments install the tested binaries from
+Bioconda. The default environment contains RAxML-NG 2.0.2 and IQ-TREE 2.4.0, while `legacy-raxml` contains RAxML-NG
+1.2.2. PyPythia 2.1.0 or newer is installed from conda-forge.
+
+The default environment uses Python 3.14 and RAxML-NG 2.0.2. Use `pixi run --environment py311 ...` or
+`pixi run --environment py314 ...` to reproduce the minimum and maximum Python versions tested in CI, or
+`pixi run --environment legacy-raxml ...` to test with RAxML-NG 1.2.2. PyDLG supports Python 3.11 through Python 3.14.
+
+Install the pre-commit hooks once and run all checks on demand using the dedicated environment:
+
+```bash
+pixi run --environment pre-commit pre-commit-install
+pixi run --environment pre-commit pre-commit-run
+```
+
 ## Usage
 
 PyDLG is primarily a command line tool. You can call it using the `label` command, for instance, to
@@ -96,9 +140,9 @@ to the console.
 The output will look something like this:
 
 ```text
-PyDLG version 1.0.1 released by The Exelixis Lab
+PyDLG version 1.2.0 released by The Exelixis Lab
 Developed by: Julia Haag
-Latest version: https://github.com/tschuelia/LabelGenerator
+Latest version: https://github.com/tschuelia/PythiaLabelGenerator
 Questions/problems/suggestions? Please open an issue on GitHub.
 
 LabelGenerator was called at 06-Mar-2025 15:15:03 as follows:
@@ -126,14 +170,14 @@ Depending on your system setup, you might need to pass a RAxML-NG and IQ-TREE bi
 You can do this using the `-r` and `-i` options, respectively. This is required in case `raxml-ng` and/or `iqtree2` are
 not in your `$PATH`.
 
-Note that this `examply.phy` MSA is not the same exemplary MSA as we provide in the PyPythia repository, so please don't compare this ground-truth lable to the exemplary prediction in PyPythia 😉
+Note that this `example.phy` MSA is not the same exemplary MSA as we provide in the PyPythia repository, so please don't compare this ground-truth label to the exemplary prediction in PyPythia 😉
 
 For a full list of command line options, run `label -h`:
 
 ```text
-PyDLG version 1.0.1 released by The Exelixis Lab
+PyDLG version 1.2.0 released by The Exelixis Lab
 Developed by: Julia Haag
-Latest version: https://github.com/tschuelia/LabelGenerator
+Latest version: https://github.com/tschuelia/PythiaLabelGenerator
 Questions/problems/suggestions? Please open an issue on GitHub.
 
 usage: label [-h] -m MSA -r RAXMLNG -i IQTREE [-t THREADS] [-s SEED] [-p PREFIX] [--model MODEL] [--ntrees NTREES] [--redo] [-V]
